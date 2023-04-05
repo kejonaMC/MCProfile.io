@@ -1,0 +1,104 @@
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/header.ejs') %>
+
+<body>
+    <div class="info-box">
+        <p>API endpoint to retrieve XUID/FUID:</p>
+        <p>Base url: https://uuid.kejona.dev</p>
+    </div>
+
+    <button class="accordion">[GET] /api/v1/xuid/{xuid}</button>
+    <div class="panel">
+        Server response:
+        <br>
+        <code>
+            <br>
+            {
+                <br>
+                &emsp;"gamertag":"ImSoAwesomeDude",
+                <br>
+                &emsp;"xuid":"2534567803960946",
+                <br>
+                &emsp;"floodgateuid":"00000000-0000-0000-0001-02fd33445566",
+                <br>
+                &emsp;"icon":"https://preview.redd.it/2uyj7hu2d4x31.jpg"
+                <br>
+            }
+        </code>
+    </div>
+
+    <button class="accordion">[GET] /api/v1/gamertag/{gamertag}</button>
+    <div class="panel">
+        Server response:
+        <br>
+        <code>
+            <br>
+            {
+                <br>
+                &emsp;"gamertag":"ImSoAwesomeDude",
+                <br>
+                &emsp;"xuid":"2534567803960946",
+                <br>
+                &emsp;"floodgateuid":"00000000-0000-0000-0001-02fd33445566",
+                <br>
+                &emsp;"icon":"https://preview.redd.it/2uyj7hu2d4x31.jpg"
+                <br>
+            }
+        </code>
+    </div>
+
+    <button class="accordion">[GET] /api/v1/fuid/{fuid}</button>
+    <div class="panel">
+        Server response:
+        <br>
+        <code>
+            <br>
+            {
+                <br>
+                &emsp;"gamertag":"ImSoAwesomeDude",
+                <br>
+                &emsp;"xuid":"2534567803960946",
+                <br>
+                &emsp;"floodgateuid":"00000000-0000-0000-0001-02fd33445566",
+                <br>
+                &emsp;"icon":"https://preview.redd.it/2uyj7hu2d4x31.jpg"
+                <br>
+            }
+        </code>
+    </div>
+
+    <button class="accordion">[GET] /api/v1/friends/{xuid}</button>
+    <div class="panel">
+        Server response:
+        <br>
+        <code>
+            <br>
+            {
+                <br>
+                &emsp;"gamertag":"ImSoAwesomeDude",
+                <br>
+                &emsp;"xuid":"2534567803960946",
+                <br>
+            }
+        </code>
+    </div>
+</body>
+
+<%- include('../partials/footer.ejs') %>
+
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+</script>

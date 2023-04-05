@@ -1,0 +1,22 @@
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/header.ejs') %>
+
+<body>      
+    <div class="box">
+        <div class="gamertag-icon">
+            <img src=<%=bedrockData.icon%> style="width:100px;height:100px;"/>
+        </div>
+        <div class="gamertag-gamertag">
+            <strong>Gamertag</strong>: <%=bedrockData.gamertag%><br />
+        </div>
+        <div class="gamertag-xuid">
+            <strong>XUID</strong>: <%=bedrockData.xuid%><br />
+        </div>
+        <div class="gamertag-fuid">
+            <strong>Floodgate UUID</strong>: <%=bedrockData.floodgateuid%><br />
+        </div>
+        <input type="button" class="btn" onclick="location.href='/';" value="Go Back" />
+    </div>
+</body>
+
+<%- include('../partials/footer.ejs') %>
