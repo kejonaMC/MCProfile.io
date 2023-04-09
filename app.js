@@ -7,18 +7,32 @@ const app = express()
 const request = require('request')
 const bodyParser = require('body-parser')
 const ejs = require('ejs')
+const rateLimit = require('express-rate-limit')
+const apicache = require('apicache')
 // Call URL
 const BASE_API_URL = 'https://xbl.io/api/v2'
 const FRIENDS = '/friends/search?gt='
 const ACCOUNT = '/account/'
 
-// Website index page loading.
+// Rate limiter for api and cache
+const limiter = rateLimit({
+    windowMs: 30 * 60 * 1000, // 30 min
+    max: 250
+})
+
+let cache = apicache.middleware
+
+// Website pages
 app.get('/', (req, res) => {
     res.render('pages/index')
 });
 
-app.get('/fuuid', (req, res) => {
-    res.render('pages/fuuid')
+app.get('/floodgate', (req, res) => {
+    res.render('pages/floodgate')
+});
+
+app.get('/gamertag', (req, res) => {
+    res.render('pages/gamertag')
 });
 
 app.get('/endpoints', (req, res) => {
@@ -31,14 +45,10 @@ app.set('view engine', 'ejs')
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/favicon.ico', express.static('attributes/images/favicon.ico'))
+app.use(limiter)
 
-// Endpoints
-app.get('/api/v1/gamertag/:gamertag', getGamertagAPI)
-app.get('/api/v1/xuid/:xuid', getXUIDAPI)
-app.get('/api/v1/fuid/:fuuid', getFUUIDAPI)
-app.get('/api/v1/friends/:xuid', getFriendsAPI)
-app.post('/', getBedrockDataButton)
-app.post('/fuuid', getBedrockDataButton)
+app.post('/floodgate', getBedrockDataButton)
+app.post('/gamertag', getBedrockDataButton)
 
 // getBedrockDataButton gets triggered on the submit post on the index page.
 function getBedrockDataButton(req, res) {
@@ -57,12 +67,12 @@ function getBedrockDataButton(req, res) {
     if (req.body.gamertag !== undefined) {
         request(urlOptions(BASE_API_URL + FRIENDS, req.body.gamertag), callback)
     } else {
-        request(urlOptions(BASE_API_URL + ACCOUNT, makeXuid(req.body.fuuid)), callback)
+        request(urlOptions(BASE_API_URL + ACCOUNT, makeXuid(req.body.floodgate)), callback)
     }
 }
 
 // Gamertag endpoint
-function getGamertagAPI(req, res) {
+app.get('/api/v1/gamertag/:gamertag', cache('2 minutes'), async (req, res) => {
     function callback(error, response, body) {
         try {
             if (!error && response.statusCode == 200) {
@@ -75,10 +85,10 @@ function getGamertagAPI(req, res) {
         }
     }
     request(urlOptions(BASE_API_URL + FRIENDS, req.params.gamertag), callback);
-}
+})
 
-//xuid endpoint
-function getXUIDAPI(req, res) {
+// Xuid endpoint
+app.get('/api/v1/xuid/:xuid', cache('2 minutes'), async (req, res) => {
     function callback(error, response, body) {
         try {
             if (!error && response.statusCode == 200) {
@@ -91,9 +101,10 @@ function getXUIDAPI(req, res) {
         }
     }
     request(urlOptions(BASE_API_URL + ACCOUNT, req.params.xuid), callback)
-}
+})
 
-function getFUUIDAPI(req, res) {
+// Fuuid endpoint
+app.get('/api/v1/fuid/:fuuid', cache('2 minutes'), async (req, res) => {
     function callback(error, response, body) {
         try {
             if (!error && response.statusCode == 200) {
@@ -106,10 +117,10 @@ function getFUUIDAPI(req, res) {
         }
     }
     request(urlOptions(BASE_API_URL + ACCOUNT, makeXuid(req.params.fuuid)), callback)
-}
+})
 
-//friendslist endpoint
-function getFriendsAPI(req, res) {
+// Friends endpoint
+app.get('/api/v1/friends/:xuid', cache('2 minutes'), async (req, res) => {
     function callback(error, response, body) {
         try {
             if (!error && response.statusCode == 200) {
@@ -122,18 +133,15 @@ function getFriendsAPI(req, res) {
         }
     }
     request(urlOptions(BASE_API_URL + FRIENDS, req.params.xuid), callback)
-}
-
-// XBL.IO headers and options.
-const headers = {
-    'X-Authorization': process.env.API_KEY,
-    'Accepts': 'application/json'
-};
+})
 
 function urlOptions(URL, option) {
     var getOptions = {
         uri: URL + option,
-        headers: headers,
+        headers: {
+            'X-Authorization': process.env.API_KEY,
+            'Accepts': 'application/json'
+        },
         method: 'GET'
     };
     return getOptions;
