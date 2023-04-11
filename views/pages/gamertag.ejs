@@ -2,12 +2,23 @@
 <%- include('../partials/header.ejs') %>
 
 <body>
-    <h5 class="title">Gamertag Lookup</h5>
-    <div class="box">
-        <form action="/gamertag" method="POST" class="form">
-            <input type="text" name="gamertag" placeholder="Gamertag" required>
-            <button type="submit" class="btn">Submit</button>
-        </form>
+    <div class="d-flex align-items-center justify-content-center mx-auto flex-column">
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    Gamertag Lookup
+                </div>
+                <div class="card-body">
+                    <form action="/gamertag" method="POST" class="form d-grid">
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="gamertag" type="text" name="gamertag" placeholder="KejonaMC1234" required>
+                            <label for="gamertag">Gamertag</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
