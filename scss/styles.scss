@@ -24,3 +24,17 @@ nav {
 .avatar-bg {
     background-image: url("../images/background.png");
 }
+
+@media (max-width: 1199px) {
+    .jumbotron {
+        text-align: center;
+    }
+}
+@media (min-width: 1200px)  {
+    .jumbotron {
+        text-align: left;
+    }
+    .search {
+        width: 50%;
+    }
+}
