@@ -2,19 +2,20 @@
 <%- include('../partials/header.ejs') %>
 
 <body>
-    <div class="kejona">
-        <h1>KejonaMC</h1>
-        <p>
-            A development group focused on creating plugins to enhance the Bedrock <-> Java player experience.
-        </p>
-        <br>
-    </div>
-    <div class="kejona-info">
-        <h4>Gamertag/Floodgate lookup</h4>
-        <p>
-            Is an easy way to retrieve aditional data; Floodgate uuid / XUID / Gamertag from a specific Gamertag or Floodgate uuid.
-        </p>
-    </div>
+    <div class="container h-100">
+      <div class="p-5 mb-4 bg-body-tertiary border rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">KejonaMC</h1>
+            <p class="col-md-8 fs-4">We are a development group focused on creating plugins the enhance the GeyserMC Bedrock <-> Java player experience</p>
+            <a href="https://github.com/kejonaMC" class="btn btn-primary btn-lg">Check out our projects &#x1f517;</a>
+        </div>
+      </div>
+      <div class="h-100 p-5 bg-body-tertiary rounded-3">
+        <h2>Gamertag/Floodgate UUID Search</h2>
+        <p>Need to retrive information from a Minecraft Bedrock player? Use our tools to fetch a user's UUID or XUID with their username.</p>
+        <a href="/gamertag" class="btn btn-primary btn-lg">Check them out</a>
+      </div>
+  </div>
 </body>
 
 <%- include('../partials/footer.ejs') %>
