@@ -8,7 +8,6 @@ services:
     image: nodejs
     container_name: nodejs
     restart: unless-stopped
-    env_file: .env
     ports:
       - "80:8888"
     volumes:
