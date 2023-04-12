@@ -8,7 +8,8 @@ const ACCOUNT = '/account/'
 const headers = {
     'X-Authorization': process.env.API_KEY,
     'Accepts': 'application/json'
-};
+}
+
 // Handle request/response from API request.
 function requestAPIHandler(url, res) {
     axios.get(url, {
@@ -26,6 +27,7 @@ function requestAPIHandler(url, res) {
             }
         })
 }
+
 // Handle request/response from web request.
 function requestWebHandler(url, res) {
     axios.get(url, {
@@ -44,6 +46,7 @@ function requestWebHandler(url, res) {
             }
         })
 }
+
 module.exports = { 
     requestAPIHandler, 
     requestWebHandler,
