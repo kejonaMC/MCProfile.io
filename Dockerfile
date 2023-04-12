@@ -12,4 +12,4 @@ RUN npm run build
 
 EXPOSE 8888
 
-CMD ["node", "build/app.js"]
+CMD ["node", "app.js"]
