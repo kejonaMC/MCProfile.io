@@ -6,8 +6,6 @@ services:
       replicas: 1
     ports:
       - "80:8888"
-    networks:
-      - app-network
     working_dir: /app
     command: sh -c "git clone https://github.com/kejonaMC/gfapi-website.git && cd gfapi-website && npm install && npm run build && cp -r build/* /app && cd .. && rm -rf gfapi-website && npm start"
 
