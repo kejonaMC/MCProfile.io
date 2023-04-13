@@ -1,15 +1,15 @@
 FROM node:latest
 
-WORKDIR /home/node
+WORKDIR /app
 
-COPY package*.json ./
+RUN apk add --no-cache git \
+  && git clone https://github.com/your-github-username/your-nodejs-repo.git \
+  && cd your-nodejs-repo \
+  && npm install \
+  && npm run build \
+  && cp -r build/* /app \
+  && cd .. \
+  && rm -rf your-nodejs-repo \
+  && apk del git
 
-RUN npm install
-
-COPY . .
-
-RUN npm run build
-
-EXPOSE 8888
-
-CMD ["node", "app.js"]
+CMD ["npm", "start"]
