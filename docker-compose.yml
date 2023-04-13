@@ -6,6 +6,6 @@ services:
     deploy:
       replicas: 1
     ports:
-      - "8000:9999"
+      - "8888:8888"
     working_dir: /app
     entrypoint: sh -c "rm -rf gfapi-website && git clone https://github.com/kejonaMC/gfapi-website.git && cd gfapi-website && npm install && npm run build && npm start"
