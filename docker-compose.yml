@@ -7,4 +7,4 @@ services:
     ports:
       - "8000:9999"
     working_dir: /app
-    command: sh -c "git clone https://github.com/kejonaMC/gfapi-website.git && cd gfapi-website && npm install && npm run build && npm start && rm -rf gfapi-website"
+    command: sh -c "git clone https://github.com/kejonaMC/gfapi-website.git && cd gfapi-website && npm install && npm run build && npm start && rm -rf gfapi-website || true && echo 'gfapi-website removed successfully!' || echo 'gfapi-website removal failed!'"
