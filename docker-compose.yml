@@ -1,12 +1,16 @@
-version: "3.9"
+version: '3.9'
 services:
   nodejs:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - ./app:/app
+    image: node:latest
+    deploy:
+      replicas: 1
     ports:
       - "80:8888"
-    environment:
-      NODE_ENV: production
+    networks:
+      - app-network
+    working_dir: /app
+    command: sh -c "git clone https://github.com/kejonaMC/gfapi-website.git && cd gfapi-website && npm install && npm run build && cp -r build/* /app && cd .. && rm -rf gfapi-website && npm start"
+networks:
+  app-network:
+    driver: overlay
+
