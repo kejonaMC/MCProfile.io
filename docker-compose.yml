@@ -7,5 +7,5 @@ services:
     ports:
       - "8000:9999"
     working_dir: /app
-    command: sh -c "git clone https://github.com/kejonaMC/gfapi-website.git && cd gfapi-website && docker-compose up --build --force-recreate && cd .. && rm -rf gfapi-website"
-
+    entrypoint: sh -c "git clone git clone https://github.com/kejonaMC/gfapi-website.git && cd gfapi-website && npm install && npm run build && npm start"
+    command: sh -c "rm -rf gfapi-website"
