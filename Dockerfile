@@ -2,7 +2,7 @@ FROM node:latest
 
 WORKDIR /app
 
-RUN apk update && apk add --no-cache git \
+RUN apk update && apk add --no-cache git bash \
   && git clone https://github.com/kejonaMC/gfapi-website.git \
   && cd gfapi-website \
   && npm install \
@@ -10,10 +10,9 @@ RUN apk update && apk add --no-cache git \
   && cp -r build/* /app \
   && cd .. \
   && rm -rf gfapi-website \
-  && apk del git
+  && apk del git bash
 
 CMD ["npm", "start"]
-
 
 
 
