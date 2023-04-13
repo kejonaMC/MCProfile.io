@@ -8,4 +8,4 @@ services:
     ports:
       - "8888:8888"
     working_dir: /app
-    entrypoint: sh -c "rm -rf gfapi-website && git clone https://github.com/kejonaMC/gfapi-website.git && cp .env /gfapi-website/.env && cd gfapi-website && npm install && npm run build && npm start"
+    entrypoint: sh -c "rm -rf gfapi-website && git clone https://github.com/kejonaMC/gfapi-website.git && cd gfapi-website && npm install && npm run build && npm start"
