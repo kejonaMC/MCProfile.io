@@ -2,7 +2,7 @@ FROM node:latest
 
 WORKDIR /app
 
-RUN apk add --no-cache git \
+RUN apk update && apk add --no-cache git \
   && git clone https://github.com/your-github-username/your-nodejs-repo.git \
   && cd your-nodejs-repo \
   && npm install \
@@ -13,3 +13,8 @@ RUN apk add --no-cache git \
   && apk del git
 
 CMD ["npm", "start"]
+
+
+
+
+
