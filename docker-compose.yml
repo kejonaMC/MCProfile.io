@@ -2,8 +2,6 @@ version: '3.9'
 services:
   nodejs:
     image: node:latest
-    env_file:
-      - .env
     restart: always
     deploy:
       replicas: 1
