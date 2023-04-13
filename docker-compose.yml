@@ -5,7 +5,7 @@ services:
     deploy:
       replicas: 1
     ports:
-      - "9999:9999"
+      - "8888:9999"
     working_dir: /app
     command: sh -c "git clone https://github.com/kejonaMC/gfapi-website.git && cd gfapi-website && npm install && npm start"
 
