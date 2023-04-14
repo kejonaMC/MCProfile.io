@@ -20,6 +20,7 @@
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "express-rate-limit": "^6.7.0",
-    "hex-to-uuid": "^1.1.1"
+    "hex-to-uuid": "^1.1.1",
+    "prismarine-auth": "^2.2.0"
   }
 }

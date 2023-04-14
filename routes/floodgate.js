@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    request.requestWebHandler(request.BASE_API_URL + request.ACCOUNT + converters.makeXuid(req.body.floodgate), res)
+    request.requestWebHandler('/users/xuid(' + converters.makeXuid(req.body.floodgate) + ')/profile/settings', res)
 })
 
 module.exports = router

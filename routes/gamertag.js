@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    request.requestWebHandler(request.BASE_API_URL + request.FRIENDS + req.body.gamertag, res)
+    request.requestWebHandler('/users/gt(' + req.body.gamertag + ')/profile/settings', res)
 })
 
 module.exports = router

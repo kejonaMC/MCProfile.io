@@ -8,17 +8,17 @@ let cache = apicache.middleware
 
 // Gamertag endpoint
 router.get('/v1/gamertag/:gamertag', cache('10 minutes'), async (req, res) => {
-    request.requestAPIHandler(request.BASE_API_URL + request.FRIENDS + req.params.gamertag, res)
+    request.requestAPIHandler('/users/gt(' + req.params.gamertag + ')/profile/settings', res)
 })
 
 // Xuid endpoint
 router.get('/v1/xuid/:xuid', cache('10 minutes'), async (req, res) => {
-    request.requestAPIHandler(request.BASE_API_URL + request.ACCOUNT + req.params.xuid, res)
+    request.requestAPIHandler('/users/xuid(' + req.params.xuid + ')/profile/settings', res)
 })
 
 // Fuuid endpoint
 router.get('/v1/fuid/:fuuid', cache('10 minutes'), async (req, res) => {
-    request.requestAPIHandler(request.BASE_API_URL + request.ACCOUNT + converters.makeXuid(req.params.fuuid), res)
+    request.requestAPIHandler('/users/xuid(' + converters.makeXuid(req.params.fuuid) + ')/profile/settings', res)
 })
 
 module.exports = router
