@@ -36,5 +36,5 @@ app.get('/', (req, res) => {
 
 // run server.
 app.listen(port, () => {
-    console.log('server started! on port ' + port)
+    console.log('Web-server started on port ' + port + '.')
 });

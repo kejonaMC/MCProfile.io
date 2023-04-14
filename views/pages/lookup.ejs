@@ -12,9 +12,18 @@
                     <div class="form-floating mb-3">
                         <input class="form-control" type="text" name="lookup" placeholder="KejonaMC1234" required>
                         <label for="uuid">Gamertag or FUUID</label>
-                        <br>
-                        <input type="radio" name="lookupOption" value="Gamertag" checked="checked">Gamertag<br>
-                        <input type="radio" name="lookupOption" value="Fuuid">Floodgate UUID<br>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="lookupOption" id="gamertag-radio" value="Gamertag" checked>
+                        <label class="form-check-label" for="gamertag-radio">
+                          Gamertag
+                        </label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="lookupOption" value="Fuuid" id="uuid-radio">
+                        <label class="form-check-label" for="uuid-radio">
+                          Floodgate UUID
+                        </label>
                     </div>
                     <button type="submit" class="btn btn-primary">Search</button>
                 </form>
