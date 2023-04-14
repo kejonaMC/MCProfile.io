@@ -7,8 +7,7 @@ const bodyParser = require('body-parser')
 const ejs = require('ejs')
 const rateLimit = require('express-rate-limit')
 // Routes
-const gamertagRouter = require('./routes/gamertag')
-const floodgateRouter = require('./routes/floodgate')
+const lookupRouter = require('./routes/lookup')
 const apiRouter = require('./routes/api')
 const endpointsRouter = require('./routes/endpoints')
 
@@ -26,8 +25,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/favicon.ico', express.static('attributes/images/favicon.ico'))
 app.use(limiter)
 // Router Files
-app.use('/gamertag', gamertagRouter)
-app.use('/floodgate', floodgateRouter)
+app.use('/lookup', lookupRouter)
 app.use('/api', apiRouter)
 app.use('/endpoints', endpointsRouter)
 
