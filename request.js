@@ -7,12 +7,17 @@ var XSTSToken
 var userHash
 
 // xbox auth
-const flow = new Authflow()
-flow.getXboxToken().then(response => {
+const doAuth = async () => {
+    const userIdentifier = 'KejonaMC'
+    const cacheDir = './cache'
+    const flow = new Authflow(userIdentifier, cacheDir)
+    const response = await flow.getXboxToken()
     XSTSToken = response.XSTSToken
     userHash = response.userHash
-    console.log("XSTS token and userHash loaded")
-})
+}
+
+doAuth()
+
 // Handle requests from and to our website.
 export function requestWebHandler(extention, res) {
     axios.get(BASE_URL + extention,
