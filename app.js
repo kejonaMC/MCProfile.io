@@ -1,15 +1,17 @@
-require('dotenv').config()
+import dotenv from 'dotenv'
 
-const express = require('express')
+import express from 'express'
+import bodyParser from 'body-parser'
+import ejs from 'ejs'
+import rateLimit from 'express-rate-limit'
+// Routes
+import lookupRouter from './routes/lookup.js'
+import apiRouter from './routes/api.js'
+import endpointsRouter from './routes/endpoints.js'
+
+dotenv.config()
 const port = process.env.PORT
 const app = express()
-const bodyParser = require('body-parser')
-const ejs = require('ejs')
-const rateLimit = require('express-rate-limit')
-// Routes
-const lookupRouter = require('./routes/lookup')
-const apiRouter = require('./routes/api')
-const endpointsRouter = require('./routes/endpoints')
 
 // Rate limiter for api and cache
 const limiter = rateLimit({

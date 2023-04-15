@@ -1,9 +1,9 @@
-const express = require('express')
-const router = express.Router()
-const apicache = require('apicache')
-const converters = require('../converters')
-const request = require('../request')
+import express from 'express'
+import apicache from 'apicache'
+import converters from '../converters.js'
+import request from '../request.js'
 
+const router = express.Router()
 let cache = apicache.middleware
 
 // Gamertag endpoint
@@ -21,4 +21,4 @@ router.get('/v1/fuid/:fuuid', cache('10 minutes'), async (req, res) => {
     request.requestAPIHandler('/users/xuid(' + converters.makeXuid(req.params.fuuid) + ')/profile/settings', res)
 })
 
-module.exports = router
+export default router

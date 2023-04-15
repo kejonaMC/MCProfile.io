@@ -1,14 +1,13 @@
-const express = require('express')
-const router = express.Router()
-const converters = require('../converters')
-const request = require('../request')
+import express from 'express'
+import converters from '../converters.js'
+import request from '../request.js'
 
+const router = express.Router()
 router.get('/', (req, res) => {
     res.render('pages/lookup')
 });
 
 router.post('/', async (req, res) => {
-    console.log(req.body)
     switch(req.body.lookupOption) {
         case 'Gamertag': request.requestWebHandler('/users/gt(' + req.body.lookup + ')/profile/settings', res)
         break
@@ -18,4 +17,4 @@ router.post('/', async (req, res) => {
     }
 })
 
-module.exports = router
+export default router

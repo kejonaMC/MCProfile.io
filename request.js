@@ -1,6 +1,6 @@
-const axios = require('axios')
-const converters = require('./converters')
-const { Authflow } = require('prismarine-auth')
+import axios from 'axios'
+import converters from './converters.js'
+import { Authflow } from 'prismarine-auth'
 const BASE_URL = 'https://profile.xboxlive.com'
 
 var XSTSToken
@@ -14,7 +14,7 @@ flow.getXboxToken().then(response => {
     console.log("XSTS token and userHash loaded")
 })
 // Handle requests from and to our website.
-function requestWebHandler(extention, res) {
+export function requestWebHandler(extention, res) {
     axios.get(BASE_URL + extention,
         {
             headers: {
@@ -38,7 +38,7 @@ function requestWebHandler(extention, res) {
         })
 }
 // Handle requests from and to our api endpoints.
-function requestAPIHandler(extention, res) {
+export function requestAPIHandler(extention, res) {
     axios.get(BASE_URL + extention,
         {
             headers: {
@@ -61,7 +61,4 @@ function requestAPIHandler(extention, res) {
         })
 }
 
-module.exports = {
-    requestWebHandler,
-    requestAPIHandler
-}
+export default {requestWebHandler, requestAPIHandler}
