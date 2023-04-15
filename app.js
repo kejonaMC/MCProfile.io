@@ -8,6 +8,7 @@ import rateLimit from 'express-rate-limit'
 import lookupRouter from './routes/lookup.js'
 import apiRouter from './routes/api.js'
 import endpointsRouter from './routes/endpoints.js'
+import endpointLogger from './js/stats.js'
 
 dotenv.config()
 const port = process.env.PORT
@@ -26,6 +27,7 @@ app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/favicon.ico', express.static('attributes/images/favicon.ico'))
 app.use(limiter)
+app.use(endpointLogger)
 // Router Files
 app.use('/lookup', lookupRouter)
 app.use('/api', apiRouter)

@@ -1,7 +1,7 @@
 import express from 'express'
 import apicache from 'apicache'
-import converters from '../converters.js'
-import request from '../request.js'
+import converters from '../js/converters.js'
+import request from '../js/request.js'
 
 const router = express.Router()
 let cache = apicache.middleware

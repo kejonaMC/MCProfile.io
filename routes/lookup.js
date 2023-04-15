@@ -1,6 +1,6 @@
 import express from 'express'
-import converters from '../converters.js'
-import request from '../request.js'
+import converters from '../js/converters.js'
+import request from '../js/request.js'
 
 const router = express.Router()
 router.get('/', (req, res) => {

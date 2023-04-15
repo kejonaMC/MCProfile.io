@@ -1,5 +1,5 @@
 import axios from 'axios'
-import converters from './converters.js'
+import converters from '../js/converters.js'
 import { Authflow } from 'prismarine-auth'
 const BASE_URL = 'https://profile.xboxlive.com'
 
