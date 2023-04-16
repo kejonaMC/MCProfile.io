@@ -1,6 +1,6 @@
 import express from 'express'
 import converters from '../js/converters.js'
-import request from '../js/request.js'
+import xboxRequest from '../js/xboxRequest.js'
 
 const router = express.Router()
 router.get('/', (req, res) => {
@@ -9,9 +9,9 @@ router.get('/', (req, res) => {
 
 router.post('/', async (req, res) => {
     switch(req.body.lookupOption) {
-        case 'Gamertag': request.requestWebHandler('/users/gt(' + req.body.lookup + ')/profile/settings', res)
+        case 'Gamertag': xboxRequest.requestWebHandler('/users/gt(' + req.body.lookup + ')/profile/settings', res)
         break
-        case 'Fuuid': request.requestWebHandler('/users/xuid(' + converters.makeXuid(req.body.lookup) + ')/profile/settings', res)
+        case 'Fuuid': xboxRequest.requestWebHandler('/users/xuid(' + converters.makeXuid(req.body.lookup) + ')/profile/settings', res)
         break
         default: res.render('pages/404')
     }
