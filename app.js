@@ -23,6 +23,7 @@ const limiter = rateLimit({
 // Middleware
 app.use(express.static('attributes'))
 app.set('view engine', 'ejs')
+app.set('trust proxy', true)
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/favicon.ico', express.static('attributes/images/favicon.ico'))
