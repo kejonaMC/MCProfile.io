@@ -2,29 +2,13 @@
 <%- include('../partials/header.ejs') %>
 
 <body>
-    <!--<div class="box">
-        <div class="gamertag-icon">
-            <img src=<%=bedrockData.icon%> style="width:100px;height:100px;"/>
-        </div>
-        <div class="gamertag-gamertag">
-            <strong>Gamertag</strong>: <%=bedrockData.gamertag%><br />
-        </div>
-        <div class="gamertag-xuid">
-            <strong>XUID</strong>: <%=bedrockData.xuid%><br />
-        </div>
-        <div class="gamertag-fuid">
-            <strong>Floodgate UUID</strong>: <%=bedrockData.floodgateuid%><br />
-        </div>
-        <input type="button" class="btn" onclick="location.href='/';" value="Go Back" />
-    </div>-->
-
     <div class="container">
         <div class="card">
             <div class="card-header">User Information</div>
             <div class="card-body">
                 <div class="row">
                     <div class="xs-col-12 col-md-4 avatar-bg">
-                        <img src=<%=bedrockData.icon%> alt="Profile Picture" class="avatar">
+                        <img src=<%=bedrockData.icon%> alt="Profile Picture" class="avatar" onerror="this.src='images/logo.jpeg';">
                     </div>
                     <div class="xs-col-12 col-md-8">
                         <table class="table table-striped">

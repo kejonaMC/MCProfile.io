@@ -33,10 +33,17 @@ app.use('/lookup', lookupRouter)
 app.use('/api', apiRouter)
 app.use('/endpoints', endpointsRouter)
 
+
 // Website Index
 app.get('/', (req, res) => {
     res.render('pages/index')
 });
+
+// Error 404 (probably bad way to do it)
+app.use(function(req, res) {
+    res.render('errors/404');
+});
+
 
 // run server.
 app.listen(port, () => {
