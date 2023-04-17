@@ -26,7 +26,7 @@ function endpointLogger(req, res, next) {
 
         // Log the requester's IP, date, total count, and the endpoint
         const log = {
-            ip: req.connection.remoteAddress,
+            ip: req.ip,
             date: new Date().toISOString(),
             count,
             endpoint: req.path
