@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
         break
         case 'Fuuid': xboxRequest.requestWebHandler('/users/xuid(' + converters.makeXuid(req.body.lookup) + ')/profile/settings', res)
         break
-        default: res.render('pages/404')
+        default: res.render('errors/404')
     }
 })
 

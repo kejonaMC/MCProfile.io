@@ -25,16 +25,25 @@ nav {
     background-image: url("../images/background.png");
 }
 
-@media (max-width: 1199px) {
-    .jumbotron {
-        text-align: center;
-    }
+.jumbotron {
+    text-align: center;
 }
-@media (min-width: 1200px)  {
+
+@media (min-width: 576px) {
+    /*sm equivalent*/
+    
+}
+  @media (min-width: 768px) {
+    /*md equivalent*/
     .jumbotron {
         text-align: left;
-    }
+      }
+}
+  @media (min-width: 992px) {
     .search {
-        width: 50%;
+      width: 50%;
     }
+}
+  @media (min-width: 1200px) {
+    /*xl equivalent*/
 }
