@@ -33,10 +33,4 @@ router.get('/v1/fuid/:fuuid', cache('10 minutes'), async (req, res, next) => {
   }
 })
 
-// Error handling middleware
-router.use((error, req, res, next) => {
-  console.error(error)
-  res.status(500).send({ message: 'Internal server error.' })
-})
-
 export default router
