@@ -1,4 +1,4 @@
-import axios from 'axios'
+import request from 'superagent'
 import { Authflow } from 'prismarine-auth'
 import converters from '../js/converters.js'
 
@@ -18,12 +18,15 @@ async function requestWebHandler(extention, res) {
             'Authorization': `XBL3.0 x=${response.userHash};${response.XSTSToken}`,
             'x-xbl-contract-version': '3'
         }
-        const xboxResponse = await axios.get(BASE_URL + extention, { headers: header, params: PARAMS })
+        const xboxResponse = await request
+            .get(BASE_URL + extention)
+            .query(PARAMS)
+            .set(header)
         if (xboxResponse.status === 200) {
-            const bedrockData = converters.jsonCreator(xboxResponse.data)
-            res.render('pages/account-info', { bedrockData: bedrockData })
+            const bedrockData = converters.jsonCreator(xboxResponse.body)
+            res.render('pages/account-info', { bedrockData })
         } else {
-            res.render('pages/404')
+            res.render('errors/404')
         }
     } catch (error) {
         console.error(error)
@@ -40,9 +43,12 @@ async function requestAPIHandler(extention, res) {
             'Authorization': `XBL3.0 x=${response.userHash};${response.XSTSToken}`,
             'x-xbl-contract-version': '3'
         }
-        const xboxResponse = await axios.get(BASE_URL + extention, { headers: header, params: PARAMS })
+        const xboxResponse = await request
+            .get(BASE_URL + extention)
+            .query(PARAMS)
+            .set(header)
         if (xboxResponse.status === 200) {
-            res.status(200).send(converters.jsonCreator(xboxResponse.data))
+            res.status(200).send(converters.jsonCreator(xboxResponse.body))
         } else {
             res.status(401).json({ message: 'Could not get account details from xbox api.' })
         }
