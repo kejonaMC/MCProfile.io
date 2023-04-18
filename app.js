@@ -8,8 +8,8 @@ import rateLimit from 'express-rate-limit'
 import lookupRouter from './routes/lookup.js'
 import apiRouter from './routes/api.js'
 import endpointsRouter from './routes/endpoints.js'
+import documentationRouter from './routes/documentation.js'
 import logger from './js/logger.js'
-import { requestCount, incrementRequestCount } from './js/requestCounter.js'
 
 dotenv.config()
 const port = process.env.PORT
@@ -34,11 +34,12 @@ app.use(logger)
 app.use('/lookup', lookupRouter)
 app.use('/api', apiRouter)
 app.use('/endpoints', endpointsRouter)
+app.use('/documentation', documentationRouter)
 
 
 // Website Index
 app.get('/', (req, res) => {
-    res.render('pages/index', { requestCount })
+    res.render('pages/index')
 });
 
 // Error 404 (probably bad way to do it)
