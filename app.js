@@ -8,7 +8,8 @@ import rateLimit from 'express-rate-limit'
 import lookupRouter from './routes/lookup.js'
 import apiRouter from './routes/api.js'
 import endpointsRouter from './routes/endpoints.js'
-import endpointLogger from './js/stats.js'
+import logger from './js/logger.js'
+import { requestCount, incrementRequestCount } from './js/requestCounter.js'
 
 dotenv.config()
 const port = process.env.PORT
@@ -28,7 +29,7 @@ app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/favicon.ico', express.static('attributes/images/favicon.ico'))
 app.use(limiter)
-app.use(endpointLogger)
+app.use(logger)
 // Router Files
 app.use('/lookup', lookupRouter)
 app.use('/api', apiRouter)
@@ -37,7 +38,7 @@ app.use('/endpoints', endpointsRouter)
 
 // Website Index
 app.get('/', (req, res) => {
-    res.render('pages/index')
+    res.render('pages/index', { requestCount })
 });
 
 // Error 404 (probably bad way to do it)

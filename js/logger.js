@@ -1,19 +1,6 @@
+import { requestCount, incrementRequestCount } from './requestCounter.js'
 import fs from 'fs'
 import path from 'path'
-
-// Define the count variable
-let count = 0
-
-// Read the count from the count file
-const countFilePath = path.join('count.json')
-
-try {
-    const countFileContent = fs.readFileSync(countFilePath, 'utf8')
-    const countData = JSON.parse(countFileContent)
-    count = countData.count
-} catch (err) {
-    console.log('No existing count file found')
-}
 
 function endpointLogger(req, res, next) {
     // Define the endpoints to log
@@ -21,24 +8,15 @@ function endpointLogger(req, res, next) {
     const endpointPath = req.path
     // Check if the endpoint matches
     if (endpoints.some(path => endpointPath.includes(path))) {
-        // Increment the count
-        count++
-
-        // Log the requester's IP, date, total count, and the endpoint
+        incrementRequestCount();
+        // Log the requester's IP, date, total requestCount, and the endpoint
         const log = {
             ip: req.ip,
             date: new Date().toISOString(),
-            count,
+            requestCount,
             endpoint: req.path
         }
         console.log(log)
-
-        // Write the new count to the count file
-        const countData = { count }
-        fs.writeFile(countFilePath, JSON.stringify(countData), (err) => {
-            if (err) throw err
-            console.log('Count saved to file')
-        })
 
         // Generate the log file name based on the current week number
         const now = new Date()

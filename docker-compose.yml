@@ -9,5 +9,5 @@ services:
       replicas: 1
     ports:
       - "8888:8888"
-    working_dir: /app
-    entrypoint: sh -c "rsync -av --exclude 'cache/' --exclude 'logs/' --exclude 'count.json' --delete gfapi-website/ gfapi-website-temp/ && mv gfapi-website-temp/ gfapi-website/ && cd gfapi-website && npm install && npm run build && npm start"
+    working_dir: /app/gfapi-website
+    entrypoint: sh -c "rsync -av --exclude-from='exclude.txt' --delete gfapi-website/ gfapi-website-temp/ && mv gfapi-website-temp/ gfapi-website/ && cd gfapi-website && npm install && npm run build && npm start"
