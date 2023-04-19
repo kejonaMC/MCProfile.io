@@ -9,7 +9,7 @@
                 <p class="col-md-8 fs-4">
                     Do you need to know how to actually use our API? Here are a few examples that can get you started.
                 </p>
-                <code><%= requestCount %> requests made.</code>
+                <code>Total of <%= requestCount %> requests have been handled.</code>
             </div>
         </div>
         <div class="row">
@@ -94,7 +94,7 @@ try (Response response = client.newCall(request).execute()) {
     
     } catch (IOException e) {
     e.printStackTrace();
-                        }
+    }
                     </code>
                 </pre>
                 </div>
