@@ -3,96 +3,106 @@
 
 <body>
     <div class="container">
-        <p style="text-align:center">Total Requests made to our API: <%= requestCount %>
-        </p>
+        <div class="p-md-5 mb-4 bg-body-tertiary border rounded-3 jumbotron">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold">KejonaMC Documentation</h1>
+                <p class="col-md-8 fs-4">
+                    Do you need to know how to actually use our API? Here are a few examples that can get you started.
+                </p>
+                <code><%= requestCount %> requests made.</code>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6 mb-4">
+                <div class="container p-md-5 py-5 bg-body-tertiary border rounded-3">
+                    <h2>Javascript</h2>
+                <pre>
+                    <code class="overflow-scroll">
+const gamertag = "KobeNetwork";
+const url = `https://kejona.dev/api/v1/gamertag/${gamertag}`;
 
-        <div class="makeRequest">
-            <H3>How to make a request to our api.</H3>
-            <p style="text-align:center">
-                JavaScript example
-            </p>
-            <pre>
-                <code class="language-js">
-                    const gamertag = "KobeNetwork";
-                    const url = `https://kejona.dev/api/v1/gamertag/${gamertag}`;
-                    
-                    fetch(url)
-                    .then(response => response.json())
-                    .then(data => {
-                        const jsonObj = {
-                        gamertag: data.gamertag,
-                        xuid: data.xuid,
-                        floodgateuid: data.floodgateuid,
-                        icon: data.icon
-                        };
-                        // get the value of "gamertag"
-                        const gamertag = jsonObject.gamertag;
-                        console.log("Gamertag: " + gamertag);
-                        
-                        // get the value of "xuid"
-                        const xuid = jsonObject.xuid;
-                        console.log("XUID: " + xuid);
-                        
-                        // get the value of "floodgateuid"
-                        const floodgateuid = jsonObject.floodgateuid;
-                        console.log("FloodgateUID: " + floodgateuid);
-                        
-                        // get the value of "icon"
-                        const icon = jsonObject.icon;
-                        console.log("Icon: " + icon);
-                        })
-                    .catch(error => {
-                        console.error(error);
-                    });
-                </code>
+fetch(url)
+.then(response => response.json())
+.then(data => {
+    const jsonObj = {
+    gamertag: data.gamertag,
+    xuid: data.xuid,
+    floodgateuid: data.floodgateuid,
+    icon: data.icon
+    };
+    // get the value of "gamertag"
+    const gamertag = jsonObject.gamertag;
+    console.log("Gamertag: " + gamertag);
+    
+    // get the value of "xuid"
+    const xuid = jsonObject.xuid;
+    console.log("XUID: " + xuid);
+    
+    // get the value of "floodgateuid"
+    const floodgateuid = jsonObject.floodgateuid;
+    console.log("FloodgateUID: " + floodgateuid);
+    
+    // get the value of "icon"
+    const icon = jsonObject.icon;
+    console.log("Icon: " + icon);
+    })
+.catch(error => {
+    console.error(error);
+});
+                    </code>
                 </pre>
-            <br>
-            <p style="text-align:center">
-                Java example
-            </p>
-            <pre>
-                <code class="language-java">
-                    String gamertag = "KobeNetwork";
-                    String url = "https://kejona.dev/api/v1/gamertag/" + gamertag;
-            
-                    OkHttpClient client = new OkHttpClient();
-            
-                    Request request = new Request.Builder()
-                            .url(url)
-                            .build();
-            
-                    try (Response response = client.newCall(request).execute()) {
-                        // Check if the response was successful
-                        if (!response.isSuccessful()) {
-                            throw new IOException("Unexpected HTTP response: " + response);
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 mb-4">
+                <div class="container p-md-5 py-5 bg-body-tertiary border rounded-3">
+                    <h2>Java</h2>
+                <pre>
+                    <code class="overflow-scroll">
+String gamertag = "KobeNetwork";
+String url = "https://kejona.dev/api/v1/gamertag/" + gamertag;
+
+OkHttpClient client = new OkHttpClient();
+
+Request request = new Request.Builder()
+        .url(url)
+        .build();
+
+try (Response response = client.newCall(request).execute()) {
+    // Check if the response was successful
+    if (!response.isSuccessful()) {
+        throw new IOException("Unexpected HTTP response: " + response);
+    }
+
+    // Parse the response JSON and create a JSONObject
+    JSONObject jsonObj = new JSONObject(response.body().string());
+    
+    // get the value of "gamertag"
+    String gamertag = jsonObj.getString("gamertag");
+    System.out.println("Gamertag: " + gamertag);
+    
+    // get the value of "xuid"
+    String xuid = jsonObj.getString("xuid");
+    System.out.println("XUID: " + xuid);
+    
+    // get the value of "floodgateuid"
+    String floodgateuid = jsonObj.getString("floodgateuid");
+    System.out.println("FloodgateUID: " + floodgateuid);
+    
+    // get the value of "icon"
+    String icon = jsonObj.getString("icon");
+    System.out.println("Icon: " + icon);
+    
+    } catch (IOException e) {
+    e.printStackTrace();
                         }
-            
-                        // Parse the response JSON and create a JSONObject
-                        JSONObject jsonObj = new JSONObject(response.body().string());
-                        
-                        // get the value of "gamertag"
-                        String gamertag = jsonObj.getString("gamertag");
-                        System.out.println("Gamertag: " + gamertag);
-                        
-                        // get the value of "xuid"
-                        String xuid = jsonObj.getString("xuid");
-                        System.out.println("XUID: " + xuid);
-                        
-                        // get the value of "floodgateuid"
-                        String floodgateuid = jsonObj.getString("floodgateuid");
-                        System.out.println("FloodgateUID: " + floodgateuid);
-                        
-                        // get the value of "icon"
-                        String icon = jsonObj.getString("icon");
-                        System.out.println("Icon: " + icon);
-                        
-                        } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                </code>
+                    </code>
                 </pre>
+                </div>
+            </div>
+            <div class="col">
+
+            </div>
         </div>
     </div>
 </body>
-
 <%- include('../partials/footer.ejs') %>

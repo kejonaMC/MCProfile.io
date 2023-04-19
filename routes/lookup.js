@@ -8,7 +8,7 @@ const GAMERTAG_API_PATH = '/users/gt('
 const XUID_API_PATH = '/users/xuid('
 
 router.get('/', async (req, res) => {
-    res.render('pages/lookup')
+    res.render('pages/lookup', { title: 'Lookup' })
 })
 
 router.post('/', async (req, res) => {

@@ -39,7 +39,7 @@ app.use('/documentation', documentationRouter)
 
 // Website Index
 app.get('/', (req, res) => {
-  res.render('pages/index')
+  res.render('pages/index', { title: 'Homepage' })
 })
 
 // Error handling middleware
@@ -47,6 +47,9 @@ app.use((err, req, res, next) => {
   console.error(err)
   res.status(500).send('Something went wrong')
 })
+app.use(function(req, res) {
+  res.render('errors/404', { title: 'Error 404' });
+});
 
 // run server.
 app.listen(port, () => {
