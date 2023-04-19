@@ -5,8 +5,11 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "node app.js",
-    "build": "npm install"
+    "build-sass": "sass --no-source-map scss:attributes/styles",
+    "watch-sass": "sass --no-source-map --watch scss:attributes/styles",
+    "run": "node app.js",
+    "build": "npm install",
+    "start": "npm-run-all --parallel build-sass watch-sass run"
   },
   "keywords": [],
   "author": "",
@@ -21,7 +24,9 @@
     "express": "^4.18.2",
     "express-rate-limit": "^6.7.0",
     "hex-to-uuid": "^1.1.1",
+    "npm-run-all": "^4.1.5",
     "prismarine-auth": "^2.2.0",
+    "sass": "^1.62.0",
     "superagent": "^8.0.9"
   }
 }

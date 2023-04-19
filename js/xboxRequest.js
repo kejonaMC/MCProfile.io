@@ -24,13 +24,13 @@ async function requestWebHandler(extention, res) {
             .set(header)
         if (xboxResponse.status === 200) {
             const bedrockData = converters.jsonCreator(xboxResponse.body)
-            res.render('pages/account-info', { bedrockData })
+            res.render('pages/account-info', { bedrockData ,title: bedrockData.gamertag })
         } else {
-            res.render('errors/404')
+            res.render('errors/404', { title: 'Error 404' });
         }
     } catch (error) {
         console.error(error)
-        res.render('pages/account-not-found')
+        res.render('pages/account-not-found', { title: 'Account Not Found' })
     }
 }
 
