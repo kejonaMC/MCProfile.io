@@ -6,7 +6,7 @@ const BASE_URL = 'https://profile.xboxlive.com'
 const USER_IDENTIFIER = 'KejonaMC'
 const CACHE_DIR = './cache'
 const PARAMS = {
-    "settings": "Gamertag,GameDisplayPicRaw"
+    "settings": "Gamertag,GameDisplayPicRaw,Gamerscore,AccountTier"
 }
 
 async function requestWebHandler(extention, res) {

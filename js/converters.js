@@ -8,6 +8,8 @@ export function jsonCreator(xboxData) {
     xuid: id,
     floodgateuid: makeFuuid(parseInt(id)),
     icon: settings[1].value,
+    gamescore: settings[2].value,
+    accounttier: settings[3].value,
   }
   return obj
 }
