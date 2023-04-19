@@ -15,7 +15,7 @@ dotenv.config()
 const port = process.env.PORT || 8888
 const app = express()
 
-// Rate limiter for api and cache
+// Rate limiter for API and cache
 const limiter = rateLimit({
   windowMs: 30 * 60 * 1000, // 30 min
   max: 100,
@@ -43,15 +43,24 @@ app.get('/', (req, res) => {
 })
 
 // Error handling middleware
+// This middleware catches all errors and logs them to the console.
+// You can add more specific error handling middleware for different types of errors.
 app.use((err, req, res, next) => {
   console.error(err)
   res.status(500).send('Something went wrong')
 })
-app.use(function(req, res) {
-  res.render('errors/404', { title: 'Error 404' });
-});
 
-// run server.
+// 404 handler
+app.use((req, res, next) => {
+  res.status(404).render('errors/404', { title: 'Error 404' })
+})
+
+// Handle unhandled Promise rejections
+process.on('unhandledRejection', (reason, promise) => {
+  console.error(`Unhandled Rejection at: ${promise}, reason: ${reason}`)
+})
+
+// Run server.
 app.listen(port, () => {
-  console.log('Web-server started on port ' + port + '.')
+  console.log(`Web-server started on port ${port}.`)
 })
