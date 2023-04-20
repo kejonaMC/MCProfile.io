@@ -8,12 +8,17 @@
             <div class="card-body">
                 <div class="row">
                     <div class="xs-col-12 col-md-4 avatar-bg">
-                        <img src=<%=bedrockData.icon%> alt="Profile Picture" class="avatar" onerror="this.src='images/logo.jpeg';">
+                      <div class="row align-items-center">
+                        <div class="col-6 col-md-12">
+                          <img src=<%=bedrockData.icon%> alt="Profile Picture" class="avatar" onerror="this.src='images/logo.jpeg';">
+                        </div>
+                        <div class="col-6 col-md-12">
+                          <img class="skin-render" src=<%=bedrockData.skin%>>
+                        </div>
+                      </div>
                     </div>
-                    <p>Skin Render</p>
-                    <img class="skinrender" src=<%=bedrockData.skin%> style="width:120px;height:200px;>"
                     <div class="xs-col-12 col-md-8">
-                        <table class="table table-striped">
+                        <table class="table table-striped ">
                             <tbody>
                               <tr>
                                 <td>Gamertag</td>
