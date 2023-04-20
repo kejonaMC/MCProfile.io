@@ -48,7 +48,6 @@ router.post(PATHS.LOOKUP, async (req, res) => {
     }
 
     const bedrockData = await profile.setup(xboxResponse.body)
-    const imageUrl = await skinRequest.getSkinImage(bedrockData.textureid)
 
     res.render('pages/account-info', { bedrockData ,title: bedrockData.gamertag })
   } catch (error) {

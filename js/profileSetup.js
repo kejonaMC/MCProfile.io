@@ -4,7 +4,7 @@ import skinRequest from '../js/skinRequest.js'
 const setup = async (xboxData) => {
   const { profileUsers: [{ settings, id }] } = xboxData
   const [gamertag, icon, gamescore, accounttier] = settings.map((s) => s.value)
-  const textureid = (await skinRequest.getTextureId(id)).toString() ?? 'no texture ID found.';
+  const textureid = (await skinRequest.getTextureId(id)).toString() ?? 'no texture ID found.'
   
   return {
     gamertag,
@@ -14,6 +14,7 @@ const setup = async (xboxData) => {
     gamescore,
     accounttier,
     textureid,
+    skin: "https://mc-heads.net/body/" + textureid
   }
 }
 
