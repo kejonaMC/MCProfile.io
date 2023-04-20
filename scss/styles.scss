@@ -17,30 +17,40 @@ nav {
 pre {
   white-space: pre-wrap;
 }
+.avatar-bg {
+    background-image: url("../images/background.png");
+}
 .avatar {
     @extend .rounded-circle;
     @extend .mx-auto;
     @extend .d-block;
-    height: 10em;
     display: inline;
+    height: 7em;
 }
-.avatar-bg {
-    background-image: url("../images/background.png");
+.skin-render {
+    @extend .mx-auto;
+    @extend .d-block;
+    display: inline;
+    width: 5em;
 }
-
 .jumbotron {
     text-align: center;
 }
 
 @media (min-width: 576px) {
     /*sm equivalent*/
-    
+    .avatar {
+      height: 7em;
+    }
 }
   @media (min-width: 768px) {
     /*md equivalent*/
     .jumbotron {
         text-align: left;
-      }
+    }
+    .avatar {
+      height: 10em;
+    }
 }
   @media (min-width: 992px) {
     .search {

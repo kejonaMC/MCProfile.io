@@ -7258,7 +7258,7 @@ nav > .container-xxl {
   display: inline-block !important;
 }
 
-.d-block, .avatar {
+.d-block, .skin-render, .avatar {
   display: block !important;
 }
 
@@ -7878,7 +7878,7 @@ nav > .container-xxl {
   margin-left: 3rem !important;
 }
 
-.mx-auto, .avatar {
+.mx-auto, .skin-render, .avatar {
   margin-right: auto !important;
   margin-left: auto !important;
 }
@@ -12221,13 +12221,18 @@ pre {
   white-space: pre-wrap;
 }
 
-.avatar {
-  height: 10em;
-  display: inline;
-}
-
 .avatar-bg {
   background-image: url("../images/background.png");
+}
+
+.avatar {
+  display: inline;
+  height: 7em;
+}
+
+.skin-render {
+  display: inline;
+  width: 5em;
 }
 
 .jumbotron {
@@ -12236,11 +12241,17 @@ pre {
 
 @media (min-width: 576px) {
   /*sm equivalent*/
+  .avatar {
+    height: 7em;
+  }
 }
 @media (min-width: 768px) {
   /*md equivalent*/
   .jumbotron {
     text-align: left;
+  }
+  .avatar {
+    height: 10em;
   }
 }
 @media (min-width: 992px) {
