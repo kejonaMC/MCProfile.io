@@ -50,7 +50,7 @@ router.post(PATHS.LOOKUP, async (req, res) => {
     const bedrockData = await profile.setup(xboxResponse.body)
     const imageUrl = await skinRequest.getSkinImage(bedrockData.textureid)
 
-    res.render('pages/account-info', { bedrockData, imageUrl ,title: bedrockData.gamertag })
+    res.render('pages/account-info', { bedrockData ,title: bedrockData.gamertag })
   } catch (error) {
     res.status(404).render('pages/account-not-found', { title: TITLES.ACCOUNT_NOT_FOUND })
   }
