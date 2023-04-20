@@ -10,6 +10,8 @@
                     <div class="xs-col-12 col-md-4 avatar-bg">
                         <img src=<%=bedrockData.icon%> alt="Profile Picture" class="avatar" onerror="this.src='images/logo.jpeg';">
                     </div>
+                    <h1>Skin Viewer</h1>
+                    <img src="<%= imageUrl %>" alt="Skin">
                     <div class="xs-col-12 col-md-8">
                         <table class="table table-striped">
                             <tbody>
@@ -32,6 +34,10 @@
                               <tr>
                                 <td>Gamescore</td>
                                 <td><code><%=bedrockData.gamescore%></code></td>
+                              </tr>
+                              <tr>
+                                <td>Skin ID</td>
+                                <td><code><%=bedrockData.textureid%></code></td>
                               </tr>
                             </tbody>
                         </table>

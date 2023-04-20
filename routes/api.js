@@ -1,35 +1,50 @@
 import express from 'express'
 import apicache from 'apicache'
-import converters from '../js/converters.js'
+import profile from '../js/profileSetup.js'
 import xboxRequest from '../js/xboxRequest.js'
 
 const router = express.Router()
-const cache = apicache.middleware
+const gamertagApiPath = '/users/gt('
+const xuidApiPath = '/users/xuid('
+const cacheTime = '10 minutes'
+const errorMessage = 'Could not get account details from xbox api.'
 
-// Gamertag endpoint
-router.get('/v1/gamertag/:gamertag', cache('10 minutes'), async (req, res, next) => {
+const cacheMiddleware = apicache.middleware(cacheTime)
+
+const respond = async (xboxResponse, res) => {
   try {
-    await xboxRequest.requestAPIHandler('/users/gt(' + req.params.gamertag + ')/profile/settings', res)
+    const profileData = await profile.setup(xboxResponse.body)
+    res.status(200).send(profileData)
   } catch (error) {
-    next(error)
+    res.status(400).json({ message: errorMessage })
+  }
+}
+
+router.get('/v1/gamertag/:gamertag', cacheMiddleware, async (req, res) => {
+  try {
+    const xboxResponse = await xboxRequest.requestXBLData(`${gamertagApiPath}${req.params.gamertag})/profile/settings`)
+    respond(xboxResponse, res)
+  } catch (error) {
+    res.status(404).json({ message: 'User not found.' })
   }
 })
 
-// Xuid endpoint
-router.get('/v1/xuid/:xuid', cache('10 minutes'), async (req, res, next) => {
+router.get('/v1/xuid/:xuid', cacheMiddleware, async (req, res) => {
   try {
-    await xboxRequest.requestAPIHandler('/users/xuid(' + req.params.xuid + ')/profile/settings', res)
+    const xboxResponse = await xboxRequest.requestXBLData(`${xuidApiPath}${req.params.xuid})/profile/settings`)
+    respond(xboxResponse, res)
   } catch (error) {
-    next(error)
+    res.status(404).json({ message: 'User not found.' })
   }
 })
 
-// Fuuid endpoint
-router.get('/v1/fuid/:fuuid', cache('10 minutes'), async (req, res, next) => {
+router.get('/v1/fuid/:fuuid', cacheMiddleware, async (req, res) => {
   try {
-    await xboxRequest.requestAPIHandler('/users/xuid(' + converters.makeXuid(req.params.fuuid) + ')/profile/settings', res)
+    const xuid = profile.createXuid(req.params.fuuid)
+    const xboxResponse = await xboxRequest.requestXBLData(`${xuidApiPath}${xuid})/profile/settings`)
+    respond(xboxResponse, res)
   } catch (error) {
-    next(error)
+    res.status(404).json({ message: 'User not found.' })
   }
 })
 
