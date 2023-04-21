@@ -11,19 +11,17 @@
                 <form action="/lookup" method="POST" class="form d-grid d-md-block">
                     <div class="form-floating mb-3">
                         <input class="form-control" type="text" name="lookup" placeholder="KejonaMC1234" required>
-                        <label for="uuid">Gamertag or FUUID</label>
+                        <label for="uuid">Bedrock/Java Username/UUID</label>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="lookupOption" id="gamertag-radio" value="Gamertag" checked>
-                        <label class="form-check-label" for="gamertag-radio">
-                          Gamertag
-                        </label>
-                    </div>
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="radio" name="lookupOption" value="Fuuid" id="uuid-radio">
-                        <label class="form-check-label" for="uuid-radio">
-                          Floodgate UUID
-                        </label>
+                    <div class="form-floating mb-3">
+                        <select class="form-select" name="lookupOption" required>
+                            <option value="">Select Search Option</option>
+                            <option value="Bedrock Username">Bedrock Username</option>
+                            <option value="Java Username">Java Username</option>
+                            <option value="Fuuid">Floodgate UUID</option>
+                            <option value="Juuid">Java UUID</option>
+                        </select>
+                        <label for="lookupOption">Search Option</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Search</button>
                 </form>

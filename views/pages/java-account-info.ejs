@@ -1,0 +1,45 @@
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/header.ejs') %>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">User Information</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="xs-col-12 col-md-4 avatar-bg">
+                      <div class="row align-items-center">
+                        <div class="col-6 col-md-12">
+                          <img class="skin-render" src=<%=javaData.skin%>>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="xs-col-12 col-md-8">
+                        <table class="table table-striped ">
+                            <tbody>
+                              <tr>
+                                <td>Username</td>
+                                <td><code><%=javaData.name%></code></td>
+                              </tr>
+                              <tr>
+                                <td>UUID</td>
+                                <td><code><%=javaData.uuid%></code></td>
+                              </tr>
+
+                              <tr>
+                                <td>Skin ID</td>
+                                <td><code><%=javaData.textureid%></code></td>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <input type="button" class="btn btn-primary" onclick="location.href='/lookup';" value="Go Back">
+                </div>
+    
+                
+            </div>
+        </div>
+    </div>
+</body>
+
+<%- include('../partials/footer.ejs') %>

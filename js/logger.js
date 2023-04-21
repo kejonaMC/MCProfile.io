@@ -8,7 +8,7 @@ function endpointLogger(req, res, next) {
     const endpointPath = req.path
     // Check if the endpoint matches
     if (endpoints.some(path => endpointPath.includes(path))) {
-        incrementRequestCount();
+        incrementRequestCount()
         // Log the requester's IP, date, total requestCount, and the endpoint
         const log = {
             ip: req.ip,

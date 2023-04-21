@@ -1,57 +1,31 @@
 <%- include('../partials/head.ejs') %>
-<%- include('../partials/header.ejs') %>
+  <%- include('../partials/header.ejs') %>
 
-<body>
-<div class="container">
-    <div class="p-md-5 mb-4 bg-body-tertiary border rounded-3 jumbotron">
-        <div class="container-fluid py-5">
+    <body>
+      <div class="container">
+        <div class="p-md-5 mb-4 bg-body-tertiary border rounded-3 jumbotron">
+          <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold">KejonaMC API</h1>
             <p class="col-md-8 fs-4">
-                An API endpoint to retrieve someone's XUID/FUID:<br>
-                Base URL: <a href="https://kejona.dev">https://kejona.dev</a>
+              An API endpoint to retrieve someone's XUID/FUID:<br>
+              Base URL: <a href="https://kejona.dev">https://kejona.dev</a>
             </p>
-        </div>
-    </div>
-    <div class="accordion" id="rest-accordion">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button collasped bg-body-tertiary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                [GET] /api/v1/xuid/{xuid}
-            </button>
-          </h2>
-          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#rest-accordion">
-            <div class="accordion-body bg-body-tertiary">
-                <h4>Server Response:</h4>
-                <p>
-                    <code>
-                        <br>
-                        {
-                            <br>
-                            &emsp;"gamertag":"ImSoAwesomeDude",
-                            <br>
-                            &emsp;"xuid":"2534567803960946",
-                            <br>
-                            &emsp;"floodgateuid":"00000000-0000-0000-0001-02fd33445566",
-                            <br>
-                            &emsp;"icon":"https://preview.redd.it/2uyj7hu2d4x31.jpg"
-                            <br>
-                        }
-                    </code>
-                </p>
-            </div>
           </div>
         </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingTwo">
-            <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              [GET] /api/v1/gamertag/{gamertag}
-            </button>
-          </h2>
-          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#rest-accordion">
-            <div class="accordion-body bg-body-tertiary">
+        <div class="accordion" id="rest-accordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button collasped bg-body-tertiary" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                [GET] /api/v1/bedrock/xuid/{xuid}
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+              data-bs-parent="#rest-accordion">
+              <div class="accordion-body bg-body-tertiary">
                 <h4>Server Response:</h4>
                 <p>
-                    <code>
+                  <code>
                         <br>
                         {
                             <br>
@@ -63,42 +37,98 @@
                             <br>
                             &emsp;"icon":"https://preview.redd.it/2uyj7hu2d4x31.jpg"
                             <br>
+                            &emsp;"gamescore":"485"
+                            <br>
+                            &emsp;"accounttier":"Silver"
+                            <br>
+                            &emsp;"textureid":"b927ccb310b62437c5eb7b5818c18dd170a1890ca433aa74c7dbd1d476fe19e9"
+                            <br>
+                            &emsp;"skin":"https://mc-heads.net/body/b927ccb310b62437c5eb7b5818c18dd170a1890ca433aa74c7dbd1d476fe19e9"
+                            <br>
                         }
                     </code>
                 </p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingThree">
-            <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              [GET] /api/v1/fuid/{fuid}
-            </button>
-          </h2>
-          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#rest-accordion">
-            <div class="accordion-body bg-body-tertiary">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                [GET] /api/v1/bedrock/gamertag/{gamertag}
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+              data-bs-parent="#rest-accordion">
+              <div class="accordion-body bg-body-tertiary">
                 <h4>Server Response:</h4>
                 <p>
-                    <code>
+                  <code>
                         <br>
                         {
-                            <br>
-                            &emsp;"gamertag":"ImSoAwesomeDude",
-                            <br>
-                            &emsp;"xuid":"2534567803960946",
-                            <br>
-                            &emsp;"floodgateuid":"00000000-0000-0000-0001-02fd33445566",
-                            <br>
-                            &emsp;"icon":"https://preview.redd.it/2uyj7hu2d4x31.jpg"
-                            <br>
+                          <br>
+                          &emsp;"gamertag":"ImSoAwesomeDude",
+                          <br>
+                          &emsp;"xuid":"2534567803960946",
+                          <br>
+                          &emsp;"floodgateuid":"00000000-0000-0000-0001-02fd33445566",
+                          <br>
+                          &emsp;"icon":"https://preview.redd.it/2uyj7hu2d4x31.jpg"
+                          <br>
+                          &emsp;"gamescore":"485"
+                          <br>
+                          &emsp;"accounttier":"Silver"
+                          <br>
+                          &emsp;"textureid":"b927ccb310b62437c5eb7b5818c18dd170a1890ca433aa74c7dbd1d476fe19e9"
+                          <br>
+                          &emsp;"skin":"https://mc-heads.net/body/b927ccb310b62437c5eb7b5818c18dd170a1890ca433aa74c7dbd1d476fe19e9"
+                          <br>
                         }
                     </code>
                 </p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                [GET] /api/v1/bedrock/fuid/{fuid}
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+              data-bs-parent="#rest-accordion">
+              <div class="accordion-body bg-body-tertiary">
+                <h4>Server Response:</h4>
+                <p>
+                  <code>
+                        <br>
+                        {
+                          <br>
+                          &emsp;"gamertag":"ImSoAwesomeDude",
+                          <br>
+                          &emsp;"xuid":"2534567803960946",
+                          <br>
+                          &emsp;"floodgateuid":"00000000-0000-0000-0001-02fd33445566",
+                          <br>
+                          &emsp;"icon":"https://preview.redd.it/2uyj7hu2d4x31.jpg"
+                          <br>
+                          &emsp;"gamescore":"485"
+                          <br>
+                          &emsp;"accounttier":"Silver"
+                          <br>
+                          &emsp;"textureid":"b927ccb310b62437c5eb7b5818c18dd170a1890ca433aa74c7dbd1d476fe19e9"
+                          <br>
+                          &emsp;"skin":"https://mc-heads.net/body/b927ccb310b62437c5eb7b5818c18dd170a1890ca433aa74c7dbd1d476fe19e9"
+                          <br>
+                        }
+                    </code>
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-</div>
 
-</body>
-<%- include('../partials/footer.ejs') %>
+    </body>
+    <%- include('../partials/footer.ejs') %>
