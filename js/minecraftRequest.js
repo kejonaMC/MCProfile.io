@@ -3,10 +3,11 @@ import { Authflow } from 'prismarine-auth'
 
 const BASE_URL = 'https://api.mojang.com'
 const CACHE_DIR = './cache'
+const USER_IDENTIFIER = 'KejonaMC'
 
 async function requestMCData(identifier, isUsername) {
   try {
-    const flow = new Authflow(identifier, CACHE_DIR)
+    const flow = new Authflow(USER_IDENTIFIER, CACHE_DIR)
     const { userHash, XSTSToken } = await flow.getXboxToken()
 
     const id = isUsername ? (await request

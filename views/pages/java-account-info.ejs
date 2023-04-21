@@ -25,11 +25,28 @@
                                 <td>UUID</td>
                                 <td><code><%=javaData.uuid%></code></td>
                               </tr>
-
                               <tr>
                                 <td>Skin ID</td>
                                 <td><code><%=javaData.textureid%></code></td>
                               </tr>
+                              <tr>
+                                <td>Geyser Linked</td>
+                                <td><code><%=javaData.isLinked%></code></td>
+                              </tr>
+                              <% if (javaData.isLinked) { %>
+                                <tr>
+                                  <td>Bedrock Gamertag</td>
+                                  <td><code><%=javaData.bedrock_gamertag%></code></td>
+                                </tr>
+                                <tr>
+                                  <td>Bedrock XUID</td>
+                                  <td><code><%=javaData.bedrock_xuid%></code></td>
+                                </tr>
+                                <tr>
+                                  <td>Bedrock Floodgate UUID</td>
+                                  <td><code><%=javaData.bedrock_fuid%></code></td>
+                                </tr>
+                              <% } %>
                             </tbody>
                         </table>
                     </div>

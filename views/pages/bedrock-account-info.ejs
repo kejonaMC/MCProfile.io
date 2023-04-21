@@ -10,9 +10,6 @@
                     <div class="xs-col-12 col-md-4 avatar-bg">
                       <div class="row align-items-center">
                         <div class="col-6 col-md-12">
-                          <img src=<%=bedrockData.icon%> alt="Profile Picture" class="avatar" onerror="this.src='images/logo.jpeg';">
-                        </div>
-                        <div class="col-6 col-md-12">
                           <img class="skin-render" src=<%=bedrockData.skin%>>
                         </div>
                       </div>
@@ -44,13 +41,25 @@
                                 <td>Skin ID</td>
                                 <td><code><%=bedrockData.textureid%></code></td>
                               </tr>
+                              <tr>
+                                <td>Geyser Linked</td>
+                                <td><code><%=bedrockData.isLinked%></code></td>
+                              </tr>
+                              <% if (bedrockData.isLinked) { %>
+                                <tr>
+                                  <td>Java UUID</td>
+                                  <td><code><%=bedrockData.java_uuid%></code></td>
+                                </tr>
+                                <tr>
+                                  <td>Java Name</td>
+                                  <td><code><%=bedrockData.java_name%></code></td>
+                                </tr>
+                              <% } %>
                             </tbody>
                         </table>
                     </div>
                     <input type="button" class="btn btn-primary" onclick="location.href='/lookup';" value="Go Back">
-                </div>
-    
-                
+                </div>   
             </div>
         </div>
     </div>
