@@ -20,6 +20,7 @@ const bedrockRespond = async (xboxResponse, res) => {
     res.status(400).json({ message: errorMessage })
   }
 }
+
 const javaRespond = async (javaResponse, res) => {
   try {
     const profileData = await profile.javaSetup(javaResponse)

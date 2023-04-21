@@ -39,7 +39,7 @@ app.use('/documentation', documentationRouter)
 
 // Website Index
 app.get('/', (req, res) => {
-  res.render('pages/index', { title: 'Homepage' })
+  res.render('pages/lookup', { title: 'Homepage' })
 })
 
 // Error handling middleware
