@@ -8,26 +8,74 @@
                 Minecraft Profile lookup
             </div>
             <div class="card-body">
-                <form action="/lookup" method="POST" class="form d-grid d-md-block">
-                    <div class="form-floating mb-3">
-                        <input class="form-control" type="text" name="lookup" placeholder="KejonaMC1234" required>
-                        <label for="uuid">Bedrock-Java / Username-UUID</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <select class="form-select" name="lookupOption" required>
-                            <option value="">Select Search Option</option>
-                            <option value="Bedrock Username">Bedrock Username</option>
-                            <option value="Java Username">Java Username</option>
-                            <option value="Fuuid">Floodgate UUID</option>
-                            <option value="Juuid">Java UUID</option>
+                <form action="/lookup" method="POST" class="form">
+                    <div class="input-group mb-3 d-flex flex-column flex-sm-row">
+                      <div class="form-floating me-sm-2 mb-2 mb-sm-0">
+                        <select class="form-select form-select-sm" name="accountType" required onchange="changeOptionValue(this.value)">
+                          <option value="Bedrock">Bedrock</option>
+                          <option value="Java">Java</option>
                         </select>
-                        <label for="lookupOption">Search Option</label>
+                        <label for="accountType">Account Type</label>
+                      </div>
+                      <div class="form-floating me-sm-2 mb-2 mb-sm-0">
+                        <select class="form-select form-select-sm" name="searchType" required>
+                          <option value="Username">Username</option>
+                          <option value="" id="uuidOptionValue">UUID or FUUID</option>
+                        </select>
+                        <label for="searchType">Search by</label>
+                      </div>
+                      <div class="form-floating mb-2 mb-sm-0">
+                        <input class="form-control" type="text" name="Input" placeholder="KejonaMC1234" required>
+                        <label for="Input" id="InputLabel">Enter Username</label>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Search</button>
                     </div>
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </form>
+                  </form>
+                  
             </div>
         </div>
     </div>
 </body>
 
 <%- include('../partials/footer.ejs') %>
+
+<script>
+const searchTypeSelect = document.querySelector('select[name="searchType"]');
+const accountTypeSelect = document.querySelector('select[name="accountType"]');
+const inputLabel = document.getElementById('InputLabel');
+const uuidOptionValue = document.getElementById('uuidOptionValue');
+
+function changeOptionValue(accountType) {
+  if (accountType === 'Bedrock') {
+    uuidOptionValue.textContent = 'Enter FUUID';
+    inputLabel.textContent = 'Enter FUUID';
+  } else if (accountType === 'Java') {
+    uuidOptionValue.textContent = 'Enter UUID';
+    inputLabel.textContent = 'Enter UUID';
+  }
+  if (searchTypeSelect.value === 'Username') {
+    inputLabel.textContent = 'Enter Username';
+    document.querySelector('input[name="Input"]').setAttribute('placeholder', 'KejonaMC1234');
+  } else {
+    document.querySelector('input[name="Input"]').setAttribute('placeholder', inputLabel.textContent);
+  }
+}
+
+// Set the default option value and input label
+changeOptionValue('Bedrock');
+
+accountTypeSelect.addEventListener('change', (event) => {
+  const selectedOption = event.target.value;
+  changeOptionValue(selectedOption);
+});
+
+searchTypeSelect.addEventListener('change', (event) => {
+  const selectedOption = event.target.value;
+  if (selectedOption === 'Username') {
+    inputLabel.textContent = 'Enter Username';
+    document.querySelector('input[name="Input"]').setAttribute('placeholder', 'KejonaMC1234');
+  } else {
+    changeOptionValue(accountTypeSelect.value);
+  }
+});
+</script>

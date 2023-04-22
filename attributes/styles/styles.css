@@ -12262,3 +12262,9 @@ pre {
 @media (min-width: 1200px) {
   /*xl equivalent*/
 }
+@media (max-width: 576px) {
+  .form-select,
+  input[type="text"] {
+    width: 100% !important;
+  }
+}

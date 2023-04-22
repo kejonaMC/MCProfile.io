@@ -33,35 +33,34 @@ router.get(PATHS.LOOKUP, async (req, res) => {
 })
 
 router.post(PATHS.LOOKUP, async (req, res) => {
-    const { lookupOption, lookup } = req.body
+    console.log(req.body)
+    const { accountType, searchType, Input } = req.body
 
     try {
         let Response
         let bedrockData
         let javaData
 
-        switch (lookupOption) {
-            case 'Bedrock Username':
-                Response = await xboxRequest.requestXBLData(
-                    `${GAMERTAG_API_PATH}${lookup})/profile/settings`
-                )
+        switch (accountType) {
+            case 'Bedrock':
+                if (searchType == "Username") {
+                    console.log(Input)
+                    Response = await xboxRequest.requestXBLData(`${GAMERTAG_API_PATH}${Input})/profile/settings`)
+
+                 } else {
+                    Response = await xboxRequest.requestXBLData(`${XUID_API_PATH}${profile.createXuid(Input)})/profile/settings`)
+                }
+
                 bedrockData = await profile.bedrockSetup(Response.body)
                 res.render('pages/bedrock-account-info', { bedrockData, title: bedrockData.gamertag })
                 break
-            case 'Java Username':
-                Response = await minecraftRequest.requestMCData(lookup, true)
-                javaData = await profile.javaSetup(Response)
-                res.render('pages/java-account-info', { javaData, title: javaData.name })
-                break
-            case 'Fuuid':
-                Response = await xboxRequest.requestXBLData(
-                    `${XUID_API_PATH}${profile.createXuid(lookup)})/profile/settings`
-                )
-                bedrockData = await profile.bedrockSetup(Response.body)
-                res.render('pages/bedrock-account-info', { bedrockData, title: bedrockData.gamertag })
-                break
-            case 'Juuid':
-                Response = await minecraftRequest.requestMCData(lookup, false)
+
+            case 'Java':
+                if (searchType == "username") {
+                Response = await minecraftRequest.requestMCData(Input, true)
+                } else {
+                    Response = await minecraftRequest.requestMCData(Input, false)
+                }
                 javaData = await profile.javaSetup(Response)
                 res.render('pages/java-account-info', { javaData, title: javaData.name })
                 break
