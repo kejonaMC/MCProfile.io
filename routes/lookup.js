@@ -56,7 +56,7 @@ router.post(PATHS.LOOKUP, async (req, res) => {
                 break
 
             case 'Java':
-                if (searchType == "username") {
+                if (searchType == "Username") {
                 Response = await minecraftRequest.requestMCData(Input, true)
                 } else {
                     Response = await minecraftRequest.requestMCData(Input, false)
