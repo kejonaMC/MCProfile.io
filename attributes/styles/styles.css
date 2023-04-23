@@ -2619,7 +2619,6 @@ textarea.form-control-lg {
 .input-group {
   position: relative;
   display: flex;
-  flex-wrap: wrap;
   align-items: stretch;
   width: 100%;
 }
@@ -2628,7 +2627,7 @@ textarea.form-control-lg {
 .input-group > .form-floating {
   position: relative;
   flex: 1 1 auto;
-  width: 1%;
+
   min-width: 0;
 }
 .input-group > .form-control:focus,
