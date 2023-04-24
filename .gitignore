@@ -207,6 +207,6 @@ dist
 # Serverless Webpack directories
 .webpack/
 cache/*
-.attributes/styles/*
+attributes/styles/
 
 requestCount.json
