@@ -6,8 +6,7 @@ async function getLinkedAccountForBedrockPlayer(xuid) {
     const res = await request.get(endpoint)
     return res.body
   } catch (err) {
-    console.error(`Error retrieving linked account for XUID ${xuid}: ${err.message}`)
-    throw new Error(`Error retrieving linked account for XUID ${xuid}`)
+    console.error(`Error retrieving java account from XUID (Geyser Api down) ${xuid}: ${err.message}`)
   }
 }
 
@@ -17,21 +16,30 @@ async function getLinkedAccountForJavaPlayer(uuid) {
     const res = await request.get(endpoint)
     return res.body
   } catch (err) {
-    console.error(`Error retrieving linked account for UUID ${uuid}: ${err.message}`)
-    throw new Error(`Error retrieving linked account for UUID ${uuid}`)
+    console.error(`Error retrieving bedrock data account from uuid (Geyser Api down) ${uuid}: ${err.message}`)
   }
 }
 
 async function getTextureId(xuid) {
   const endpoint = `https://api.geysermc.org/v2/skin/${xuid}`
   try {
-    const res = await request.get(endpoint);
-    const textureId = res.body.texture_id;
-    return textureId;
+    const res = await request.get(endpoint)
+    const textureId = res.body.texture_id
+    return textureId
   } catch (err) {
-    console.error(`Error retrieving texture ID for XUID ${xuid}: ${err.message}`)
-    throw new Error(`Error retrieving texture ID for XUID ${xuid}`)
+    console.error(`Error retrieving textureID account from XUID (Geyser Api down) ${xuid}: ${err.message}`)
   }
 }
 
-export default { getLinkedAccountForBedrockPlayer, getLinkedAccountForJavaPlayer, getTextureId }
+async function getGamertag(xuid) {
+  const endpoint = `https://api.geysermc.org/v2/xbox/gamertag/${xuid}`
+  try {
+    const res = await request.get(endpoint)
+    const gamertag = res.body.gamertag
+    return gamertag
+  } catch (err) {
+    console.error(`Error retrieving gamertag account from XUID (Geyser Api down) ${xuid}: ${err.message}`)
+  }
+}
+
+export default { getLinkedAccountForBedrockPlayer, getLinkedAccountForJavaPlayer, getTextureId, getGamertag }

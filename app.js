@@ -11,23 +11,23 @@ import apiRouter from './routes/api.js'
 import endpointsRouter from './routes/endpoints.js'
 import documentationRouter from './routes/documentation.js'
 
-dotenv.config()
-const port = process.env.PORT || 8888
-const app = express()
-
 // Rate limiter for API and cache
 const limiter = rateLimit({
   windowMs: 30 * 60 * 1000, // 30 min
   max: 100,
 })
 
+dotenv.config()
+const port = process.env.PORT || 8888
+const app = express()
+
 // Middleware
-app.use(express.static('attributes'))
 app.set('view engine', 'ejs')
 app.set('trust proxy', true)
+app.use(express.static('attributes', { extensions: ['ico'] }))
+app.use(express.static('attributes'))
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }))
-app.use('/favicon.ico', express.static('attributes/images/favicon.ico'))
 app.use(limiter)
 app.use(logger)
 
@@ -37,17 +37,24 @@ app.use('/api', apiRouter)
 app.use('/endpoints', endpointsRouter)
 app.use('/documentation', documentationRouter)
 
-// Website Index
-app.get('/', (req, res) => {
-  res.render('pages/lookup', { title: 'Homepage' })
+// Error handling middleware
+// Specific error handling middleware for different types of errors.
+app.use((err, req, res, next) => {
+  if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+    // Handle JSON parsing errors
+    res.status(400).send('Invalid JSON')
+  } else if (err) {
+    // Handle all other errors
+    console.error(err)
+    res.status(500).send('Something went wrong')
+  } else {
+    next()
+  }
 })
 
-// Error handling middleware
-// This middleware catches all errors and logs them to the console.
-// You can add more specific error handling middleware for different types of errors.
-app.use((err, req, res, next) => {
-  console.error(err)
-  res.status(500).send('Something went wrong')
+// Redirect to the lookup page
+app.get('/', (req, res) => {
+  res.redirect('/lookup')
 })
 
 // 404 handler

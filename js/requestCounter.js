@@ -1,14 +1,18 @@
 import fs from 'fs'
 import path from 'path'
+import { fileURLToPath } from 'url'
+
+// Set the path to the count file in the root directory
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const requestCountFilePath = path.join(path.resolve(__dirname, '../'), 'requestCount.json')
 
 // Read the count from the count file
-const requestCountFilePath = path.resolve('requestCount.json')
-let { requestCount } = { requestCount: 0 }
+let requestCount = 0
 
 try {
   const countFileContent = fs.readFileSync(requestCountFilePath, 'utf8')
   const countData = JSON.parse(countFileContent)
-  ({ requestCount } = countData)
+  requestCount = countData.requestCount
 } catch (err) {
   console.log('No existing count file found')
 }
@@ -31,4 +35,4 @@ async function incrementRequestCount() {
   }
 }
 
-export { requestCount, incrementRequestCount }
+export { requestCount, incrementRequestCount, }
