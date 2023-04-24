@@ -4,7 +4,16 @@
 
 @import "./colors.scss";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css");
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+@font-face {
+  font-family: 'MinecraftSeven';
+  src:
+    url(https://github.com/Mojang/web-theme-bootstrap/blob/main/assets/fonts/Minecraft-Seven_v2.woff?raw=true) format('woff');/* Legacy iOS */
+
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
 
 h1, h2, h3, h4, h5, h6 {
     @extend .text-white;
@@ -17,23 +26,38 @@ nav {
 pre {
   white-space: pre-wrap;
 }
-.avatar-bg {
-    background-image: url("../images/background.png");
+th.theader {
+  text-align: center;
 }
-.avatar {
-    @extend .rounded-circle;
-    @extend .mx-auto;
-    @extend .d-block;
-    display: inline;
-    height: 7em;
+.avatar-bg {
+  background-image: url("../images/background.png");
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .skin-render {
-    @extend .mx-auto;
-    @extend .d-block;
-    display: inline;
+    margin: auto;
 }
 .jumbotron {
     text-align: center;
+}
+.search {
+  font-family: MinecraftSeven, ;
+  .card {
+    color: rgb(255, 255, 255);
+    background-color: $mc_gray_t1;
+  }
+  .card-header {
+    text-align: center;
+    color: rgb(67, 67, 67);
+  }
+  .card-body {
+    padding: 5em var(--bs-card-spacer-x);
+    background-color: rgba(9, 9, 9, .5);
+  }
+  .form-select, .form-control, .btn {
+    border-radius: 0;
+  }
 }
 
 @media (min-width: 576px) {
@@ -42,7 +66,7 @@ pre {
       height: 7em;
     }
 }
-  @media (min-width: 768px) {
+@media (min-width: 768px) {
     /*md equivalent*/
     .jumbotron {
         text-align: left;
@@ -51,11 +75,11 @@ pre {
       height: 10em;
     }
 }
-  @media (min-width: 992px) {
+@media (min-width: 992px) {
     .search {
       width: 50%;
     }
 }
-  @media (min-width: 1200px) {
+@media (min-width: 1200px) {
     /*xl equivalent*/
 }
