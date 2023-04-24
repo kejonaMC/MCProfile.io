@@ -8,54 +8,55 @@
             <div class="card-body">
                 <div class="row">
                     <div class="xs-col-12 col-md-4 avatar-bg">
-                      <div class="row align-items-center">
-                        <div class="col-6 col-md-12">
-                          <img class="skin-render" src=<%=bedrockData.skin%>>
-                        </div>
-                      </div>
+                      <img class="skin-render" src=<%=bedrockData.skin%>>
                     </div>
-                    <div class="xs-col-12 col-md-8">
-                        <table class="table table-striped ">
+                    <div class="xs-col-12 col-md-8 table-responsive">
+                        <table class="table table-striped">
                             <tbody>
                               <tr>
-                                <td>Gamertag</td>
+                                <th colspan="2" class="theader">Microsoft Account Information</th>
+                              </tr>
+                              <tr>
+                                <th>Gamertag</th>
                                 <td><code><%=bedrockData.gamertag%></code></td>
                               </tr>
                               <tr>
-                                <td>XUID</td>
+                                <th>XUID</th>
                                 <td><code><%=bedrockData.xuid%></code></td>
                               </tr>
                               <tr>
-                                <td>Floodgate UUID</td>
-                                <td><code><%=bedrockData.floodgateuid%></code></td>
-                              </tr>
-                              <tr>
-                                <td>AccountTier</td>
+                                <th>AccountTier</th>
                                 <td><code><%=bedrockData.accounttier%></code></td>
                               </tr>
                               <tr>
-                                <td>Gamescore</td>
+                                <th>Gamescore</th>
                                 <td><code><%=bedrockData.gamescore%></code></td>
                               </tr>
                               <tr>
+                                <th colspan="2" class="theader">GeyserMC Information</th>
+                              </tr>
                               <tr>
-                                <td>Geyser Linked</td>
+                                <th>Geyser Linked</th>
                                 <td><code><%=bedrockData.isLinked%></code></td>
+                              </tr>
+                              <tr>
+                                <th>Floodgate UUID</th>
+                                <td><code><%=bedrockData.floodgateuid%></code></td>
                               </tr>
                               <% if (bedrockData.isLinked) { %>
                                 <tr>
-                                  <td>Java UUID</td>
+                                  <th>Java UUID</th>
                                   <td><code><%=bedrockData.java_uuid%></code></td>
                                 </tr>
                                 <tr>
-                                  <td>Java Name</td>
+                                  <th>Java Name</th>
                                   <td><code><%=bedrockData.java_name%></code></td>
                                 </tr>
                               <% } %>
                             </tbody>
                         </table>
                     </div>
-                    <input type="button" class="btn btn-primary" onclick="location.href='/lookup';" value="Go Back">
+                    <input type="button" class="btn btn-primary mt-3" onclick="location.href='/lookup';" value="Go Back">
                 </div>   
             </div>
         </div>

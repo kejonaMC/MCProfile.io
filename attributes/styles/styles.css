@@ -6,7 +6,6 @@
  */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
 :root,
 [data-bs-theme=light] {
   --bs-blue: #3459e6;
@@ -2619,6 +2618,7 @@ textarea.form-control-lg {
 .input-group {
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   align-items: stretch;
   width: 100%;
 }
@@ -2627,6 +2627,7 @@ textarea.form-control-lg {
 .input-group > .form-floating {
   position: relative;
   flex: 1 1 auto;
+  width: 1%;
   min-width: 0;
 }
 .input-group > .form-control:focus,
@@ -7256,7 +7257,7 @@ nav > .container-xxl {
   display: inline-block !important;
 }
 
-.d-block, .skin-render, .avatar {
+.d-block {
   display: block !important;
 }
 
@@ -7876,7 +7877,7 @@ nav > .container-xxl {
   margin-left: 3rem !important;
 }
 
-.mx-auto, .skin-render, .avatar {
+.mx-auto {
   margin-right: auto !important;
   margin-left: auto !important;
 }
@@ -8880,7 +8881,7 @@ nav > .container-xxl {
   border-radius: var(--bs-border-radius-xxl) !important;
 }
 
-.rounded-circle, .avatar {
+.rounded-circle {
   border-radius: 50% !important;
 }
 
@@ -12215,26 +12216,196 @@ a.text-primary:hover, a.text-primary:focus {
   color: #2a5d1b !important;
 }
 
+/*------------------------------------
+- COLOR mc-gray
+------------------------------------*/
+.alert-mc-gray {
+  color: #888888;
+  background-color: rgba(18, 193, 44, 0.0705882353) c;
+  border-color: rgba(18, 17, 33, 0.0705882353) 1;
+}
+
+.alert-mc-gray hr {
+  border-top-color: rgba(17, 81, 21, 0.0666666667) 5;
+}
+
+.alert-mc-gray .alert-link {
+  color: #6f6f6f;
+}
+
+.badge-mc-gray {
+  color: #212529;
+  background-color: #c6c6c6;
+}
+
+.badge-mc-gray[href]:hover, .badge-mc-gray[href]:focus {
+  color: #212529;
+  background-color: #acacac;
+}
+
+.bg-mc-gray {
+  background-color: #c6c6c6 !important;
+}
+
+a.bg-mc-gray:hover, a.bg-mc-gray:focus,
+button.bg-mc-gray:hover,
+button.bg-mc-gray:focus {
+  background-color: #acacac !important;
+}
+
+.border-mc-gray {
+  border-color: #c6c6c6 !important;
+}
+
+.btn-mc-gray {
+  color: #212529;
+  background-color: #c6c6c6;
+  border-color: #c6c6c6;
+}
+
+.btn-mc-gray:hover {
+  color: #212529;
+  background-color: #b4b4b4;
+  border-color: #acacac;
+}
+
+.btn-mc-gray:focus, .btn-mc-gray.focus {
+  box-shadow: 0 0 0 0.2rem rgba(198, 198, 198, 0.5);
+}
+
+.btn-mc-gray.disabled, .btn-mc-gray:disabled {
+  color: #212529;
+  background-color: #c6c6c6;
+  border-color: #c6c6c6;
+}
+
+.btn-mc-gray:not(:disabled):not(.disabled):active, .btn-mc-gray:not(:disabled):not(.disabled).active, .show > .btn-mc-gray.dropdown-toggle {
+  color: #212529;
+  background-color: #acacac;
+  border-color: #a4a4a4;
+}
+
+.btn-mc-gray:not(:disabled):not(.disabled):active:focus, .btn-mc-gray:not(:disabled):not(.disabled).active:focus, .show > .btn-mc-gray.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(198, 198, 198, 0.5);
+}
+
+.btn-outline-mc-gray {
+  color: #c6c6c6;
+  background-color: transparent;
+  border-color: #c6c6c6;
+}
+
+.btn-outline-mc-gray:hover {
+  color: #212529;
+  background-color: #c6c6c6;
+  border-color: #c6c6c6;
+}
+
+.btn-outline-mc-gray:focus, .btn-outline-mc-gray.focus {
+  box-shadow: 0 0 0 0.2rem rgba(198, 198, 198, 0.5);
+}
+
+.btn-outline-mc-gray.disabled, .btn-outline-mc-gray:disabled {
+  color: #c6c6c6;
+  background-color: transparent;
+}
+
+.btn-outline-mc-gray:not(:disabled):not(.disabled):active, .btn-outline-mc-gray:not(:disabled):not(.disabled).active, .show > .btn-outline-mc-gray.dropdown-toggle {
+  color: #212529;
+  background-color: #c6c6c6;
+  border-color: #c6c6c6;
+}
+
+.btn-outline-mc-gray:not(:disabled):not(.disabled):active:focus, .btn-outline-mc-gray:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-mc-gray.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(198, 198, 198, 0.5);
+}
+
+.list-group-item-mc-gray {
+  color: #888888;
+  background-color: rgba(18, 17, 33, 0.0705882353) 1;
+}
+
+.list-group-item-mc-gray.list-group-item-action:hover, .list-group-item-mc-gray.list-group-item-action:focus {
+  color: #888888;
+  background-color: rgba(17, 81, 21, 0.0666666667) 5;
+}
+
+.list-group-item-mc-gray.list-group-item-action.active {
+  color: #212529;
+  background-color: #888888;
+  border-color: #888888;
+}
+
+.table-mc-gray,
+.table-mc-gray > th,
+.table-mc-gray > td {
+  background-color: rgba(18, 17, 33, 0.0705882353) 1;
+}
+
+.table-hover .table-mc-gray:hover {
+  background-color: rgba(17, 81, 21, 0.0666666667) 5;
+}
+
+.table-hover .table-mc-gray:hover > td,
+.table-hover .table-mc-gray:hover > th {
+  background-color: rgba(17, 81, 21, 0.0666666667) 5;
+}
+
+.text-mc-gray {
+  color: #c6c6c6 !important;
+}
+
+a.text-mc-gray:hover, a.text-mc-gray:focus {
+  color: #acacac !important;
+}
+
+@font-face {
+  font-family: "MinecraftSeven";
+  src: url(https://github.com/Mojang/web-theme-bootstrap/blob/main/assets/fonts/Minecraft-Seven_v2.woff?raw=true) format("woff"); /* Legacy iOS */
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
 pre {
   white-space: pre-wrap;
 }
 
-.avatar-bg {
-  background-image: url("../images/background.png");
+th.theader {
+  text-align: center;
 }
 
-.avatar {
-  display: inline;
-  height: 7em;
+.avatar-bg {
+  background-image: url("../images/background.png");
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .skin-render {
-  display: inline;
-  width: 10em;
+  margin: auto;
 }
 
 .jumbotron {
   text-align: center;
+}
+
+.search {
+  font-family: MinecraftSeven;
+}
+.search .card {
+  color: rgb(255, 255, 255);
+  background-color: #c6c6c6;
+}
+.search .card-header {
+  text-align: center;
+  color: rgb(67, 67, 67);
+}
+.search .card-body {
+  padding: 5em var(--bs-card-spacer-x);
+  background-color: rgba(9, 9, 9, 0.5);
+}
+.search .form-select, .search .form-control, .search .btn {
+  border-radius: 0;
 }
 
 @media (min-width: 576px) {
@@ -12259,10 +12430,4 @@ pre {
 }
 @media (min-width: 1200px) {
   /*xl equivalent*/
-}
-@media (max-width: 576px) {
-  .form-select,
-  input[type="text"] {
-    width: 100% !important;
-  }
 }
