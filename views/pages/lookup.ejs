@@ -8,40 +8,46 @@
     <div class="container search">
         <div class="card">
             <div class="card-header">
-                Minecraft Profile lookup
+                Minecraft Profile Lookup
             </div>
             <div class="card-body">
-                <form action="/lookup" method="POST" class="form">
-                    <div class="input-group mb-3 d-flex flex-column flex-sm-row">
-                      <div class="form-floating me-sm-2 mb-2 mb-sm-0">
-                        <select class="form-select form-select-sm" name="accountType" required onchange="changeOptionValue(this.value)">
-                          <option value="Bedrock">Bedrock</option>
-                          <option value="Java">Java</option>
-                        </select>
-                        <label for="accountType">Account Type</label>
-                      </div>
-                      <div class="form-floating me-sm-2 mb-2 mb-sm-0">
-                        <select class="form-select form-select-sm" name="searchType" required>
-                          <option value="Username">Username</option>
-                          <option value="" id="uuidOptionValue">UUID or FUUID</option>
-                        </select>
-                        <label for="searchType">Search by</label>
-                      </div>
-                      <div class="form-floating mb-2 mb-sm-0">
-                        <input class="form-control" type="text" name="Input" placeholder="KejonaMC1234" required>
-                        <label for="Input" id="InputLabel">Enter Username</label>
-                      </div>
-                      <button type="submit" class="btn btn-primary">Search</button>
+              <form action="/lookup" method="POST">
+                <div class="container">
+                  <div class="row g-3 mb-3">
+                    <div class="col-12 col-md-6">
+                      <label for="accountType" class="form-label">Edition</label>
+                      <select name="accountType" id="accountType" class="form-select form-select-lg" required onchange="changeOptionValue(this.value)">
+                        <option value="Bedrock">Bedrock</option>
+                        <option value="Java">Java</option>
+                      </select>
                     </div>
-                  </form>
-                  
+                    <div class="col-12 col-md-6">
+                      <label for="searchType" class="form-label">Search With</label>
+                      <select name="searchType" id="searchType" class="form-select form-select-lg" required>
+                        <option value="Username">Username</option>
+                        <option value="#" id="uuidOptionValue">#</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col">
+                      <label for="Input" id="InputLabel" class="form-label">Enter Username</label>
+                      <div class="input-group">
+                        <input class="form-control form-control-lg" type="text" name="Input" placeholder="KejonaMC1234" aria-describedby="search-submit">
+                        <button class="btn btn-mc-gray btn-large" type="submit" id="search-submit">Search</button>
+                      </div>
+                    </div>
+                  </div>
+              </form>
             </div>
         </div>
     </div>
 </body>
 
 <%- include('../partials/footer.ejs') %>
-
+<script>
+  document.getElementById("nav-lookup").classList.add("active");
+</script>
 <script>
 const searchTypeSelect = document.querySelector('select[name="searchType"]');
 const accountTypeSelect = document.querySelector('select[name="accountType"]');

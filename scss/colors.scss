@@ -156,3 +156,161 @@ button.bg-primary:focus {
 a.text-primary:hover, a.text-primary:focus {
   color: $primary_t2 !important;
 }
+
+/*------------------------------------
+- COLOR mc-gray
+------------------------------------*/
+
+$mc_gray_t1: #c6c6c6;
+$mc_gray_t2: #acacac;
+$mc_gray_t3: #115115115;
+$mc_gray_t4: #121121121;
+$mc_gray_t5: #888888;
+$mc_gray_t6: #a4a4a4;
+$mc_gray_t7: #b4b4b4;
+$mc_gray_t8: #6f6f6f;
+$mc_gray_t9: #12c12c12c;
+
+$mc_gray_shadow: rgba(198, 198, 198, 0.5);
+$mc_gray_text_color_dark_bright: #212529;
+
+
+.alert-mc-gray {
+  color: $mc_gray_t5;
+  background-color: $mc_gray_t9;
+  border-color: $mc_gray_t4;
+}
+
+.alert-mc-gray hr {
+  border-top-color: $mc_gray_t3;
+}
+
+.alert-mc-gray .alert-link {
+  color: $mc_gray_t8;
+}
+
+.badge-mc-gray {
+  color: $mc_gray_text_color_dark_bright;
+  background-color: $mc_gray_t1;
+}
+
+.badge-mc-gray[href]:hover, .badge-mc-gray[href]:focus {
+  color: $mc_gray_text_color_dark_bright;
+  background-color: $mc_gray_t2;
+}
+
+.bg-mc-gray {
+  background-color: $mc_gray_t1 !important;
+}
+
+a.bg-mc-gray:hover, a.bg-mc-gray:focus,
+button.bg-mc-gray:hover,
+button.bg-mc-gray:focus {
+  background-color: $mc_gray_t2 !important;
+}
+
+.border-mc-gray {
+  border-color: $mc_gray_t1 !important;
+}
+
+.btn-mc-gray {
+  color: $mc_gray_text_color_dark_bright;
+  background-color: $mc_gray_t1;
+  border-color: $mc_gray_t1;
+}
+
+.btn-mc-gray:hover {
+  color: $mc_gray_text_color_dark_bright;
+  background-color: $mc_gray_t7;
+  border-color: $mc_gray_t2;
+}
+
+.btn-mc-gray:focus, .btn-mc-gray.focus {
+  box-shadow: 0 0 0 0.2rem $mc_gray_shadow;
+}
+
+.btn-mc-gray.disabled, .btn-mc-gray:disabled {
+  color: $mc_gray_text_color_dark_bright;
+  background-color: $mc_gray_t1;
+  border-color: $mc_gray_t1;
+}
+
+.btn-mc-gray:not(:disabled):not(.disabled):active, .btn-mc-gray:not(:disabled):not(.disabled).active, .show > .btn-mc-gray.dropdown-toggle {
+  color: $mc_gray_text_color_dark_bright;
+  background-color: $mc_gray_t2;
+  border-color: $mc_gray_t6;
+}
+
+.btn-mc-gray:not(:disabled):not(.disabled):active:focus, .btn-mc-gray:not(:disabled):not(.disabled).active:focus, .show > .btn-mc-gray.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem $mc_gray_shadow;
+}
+
+.btn-outline-mc-gray {
+  color: $mc_gray_t1;
+  background-color: transparent;
+  border-color: $mc_gray_t1;
+}
+
+.btn-outline-mc-gray:hover {
+  color: $mc_gray_text_color_dark_bright;
+  background-color: $mc_gray_t1;
+  border-color: $mc_gray_t1;
+}
+
+.btn-outline-mc-gray:focus, .btn-outline-mc-gray.focus {
+  box-shadow: 0 0 0 0.2rem $mc_gray_shadow;
+}
+
+.btn-outline-mc-gray.disabled, .btn-outline-mc-gray:disabled {
+  color: $mc_gray_t1;
+  background-color: transparent;
+}
+
+.btn-outline-mc-gray:not(:disabled):not(.disabled):active, .btn-outline-mc-gray:not(:disabled):not(.disabled).active, .show > .btn-outline-mc-gray.dropdown-toggle {
+  color: $mc_gray_text_color_dark_bright;
+  background-color: $mc_gray_t1;
+  border-color: $mc_gray_t1;
+}
+
+.btn-outline-mc-gray:not(:disabled):not(.disabled):active:focus, .btn-outline-mc-gray:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-mc-gray.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem $mc_gray_shadow;
+}
+
+.list-group-item-mc-gray {
+  color: $mc_gray_t5;
+  background-color: $mc_gray_t4;
+}
+
+.list-group-item-mc-gray.list-group-item-action:hover, .list-group-item-mc-gray.list-group-item-action:focus {
+  color: $mc_gray_t5;
+  background-color: $mc_gray_t3;
+}
+
+.list-group-item-mc-gray.list-group-item-action.active {
+  color: $mc_gray_text_color_dark_bright;
+  background-color: $mc_gray_t5;
+  border-color: $mc_gray_t5;
+}
+
+.table-mc-gray,
+.table-mc-gray > th,
+.table-mc-gray > td {
+  background-color: $mc_gray_t4;
+}
+
+.table-hover .table-mc-gray:hover {
+  background-color: $mc_gray_t3;
+}
+
+.table-hover .table-mc-gray:hover > td,
+.table-hover .table-mc-gray:hover > th {
+  background-color: $mc_gray_t3;
+}
+
+.text-mc-gray {
+  color: $mc_gray_t1 !important;
+}
+
+a.text-mc-gray:hover, a.text-mc-gray:focus {
+  color: $mc_gray_t2 !important;
+}
