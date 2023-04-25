@@ -1,9 +1,7 @@
 version: '3.9'
 services:
   nodejs:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: node:latest
     env_file:
       - stack.env
     restart: always
