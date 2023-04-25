@@ -14,14 +14,20 @@
   font-weight: normal;
   text-rendering: optimizeLegibility;
 }
-
+body {
+  background-color: #140c19;
+  background-image: url("../images/bg.png");
+  // https://wallpaperaccess.com/minecraft-dark
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 h1, h2, h3, h4, h5, h6 {
     @extend .text-white;
 }
 nav {
     @extend .navbar;
     @extend .navbar-expand-lg;
-    @extend .bg-body-tertiary;
 }
 pre {
   white-space: pre-wrap;
@@ -29,6 +35,18 @@ pre {
 th.theader {
   text-align: center;
 }
+
+.bg-body-tertiary {
+  background-color: #140c19a6 !important;
+}
+.bg-body-secondary {
+  --bs-bg-opacity: 1;
+  background-color: #140c19a6 !important;
+}
+.bg-body {
+  background-color: #140c19a6 !important;
+}
+
 .avatar-bg {
   background-image: url("../images/background.png");
   display: flex;
@@ -45,19 +63,29 @@ th.theader {
   font-family: MinecraftSeven, ;
   .card {
     color: rgb(255, 255, 255);
-    background-color: $mc_gray_t1;
+    background-color: #140c19a6 !important;
   }
   .card-header {
     text-align: center;
-    color: rgb(67, 67, 67);
+    color: rgb(253, 253, 253);
   }
   .card-body {
-    padding: 5em var(--bs-card-spacer-x);
-    background-color: rgba(9, 9, 9, .5);
+    padding: 3em var(--bs-card-spacer-x);
+    background-color: #140c19a6 !important;
   }
   .form-select, .form-control, .btn {
     border-radius: 0;
   }
+}
+.card {
+  background-color: #140c19a6 !important;
+}
+.form-control, .form-select {
+  background-color: #140c19a6 !important;
+}
+.counter {
+  margin-top: 3%;
+  margin-bottom: 5%;
 }
 
 @media (min-width: 576px) {
