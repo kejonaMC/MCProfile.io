@@ -8,8 +8,7 @@
 @font-face {
   font-family: 'MinecraftSeven';
   src:
-    url(https://github.com/Mojang/web-theme-bootstrap/blob/main/assets/fonts/Minecraft-Seven_v2.woff?raw=true) format('woff');/* Legacy iOS */
-
+    url('../attributes/fonts/Minecraft-Seven_v2.woff') format('woff');
   font-style: normal;
   font-weight: normal;
   text-rendering: optimizeLegibility;
