@@ -9,5 +9,5 @@ services:
       replicas: 1
     ports:
       - "8888:8888"
-    working_dir: /app/gfapi-website
-    command: sh -c "ls && cd gfapi-website && npm install && npm run build && npm start"
+    working_dir: /app
+    command: sh -c "cd gfapi-website && npm install && npm run build && npm start"
