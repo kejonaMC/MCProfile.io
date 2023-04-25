@@ -10,4 +10,4 @@ services:
     ports:
       - "8888:8888"
     working_dir: /app/gfapi-website
-    command: sh -c "cd gfapi-website && npm install && npm run build && npm start"
+    command: sh -c "ls && cd gfapi-website && npm install && npm run build && npm start"
