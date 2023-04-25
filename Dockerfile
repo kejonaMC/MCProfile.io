@@ -1,5 +1,5 @@
 FROM node:latest
-WORKDIR /app
+WORKDIR /app/gfapi-website
 COPY package*.json ./
 RUN npm install
 COPY . .
