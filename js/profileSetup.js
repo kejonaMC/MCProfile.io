@@ -14,9 +14,6 @@ async function bedrockSetup(xboxData) {
     linkage = await geyserRequest.getLinkedAccountForBedrockPlayer(id)
   } catch (error) {}
 
-  console.log(textureid)
-  console.log(linkage)
-
   if (linkage && Object.keys(linkage).length !== 0) {
     isLinked = true
   }
