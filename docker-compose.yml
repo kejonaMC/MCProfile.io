@@ -10,3 +10,5 @@ services:
       NODE_ENV: production
     ports:
       - 8888:8888
+    volumes:
+      - ./app:/app

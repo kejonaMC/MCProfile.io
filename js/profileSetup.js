@@ -4,17 +4,18 @@ import geyserRequest from '../js/geyserRequest.js'
 const bedrockSetup = async (xboxData) => {
   const { profileUsers: [{ settings, id }] } = xboxData
   const [gamertag, icon, gamescore, accounttier] = settings.map((s) => s.value)
-  const textureid = (await geyserRequest.getTextureId(id)).toString() ?? 'no texture ID found.'
-  let linkage = {}
-
+  let textureid = 'no texture ID found.'
   try {
-    linkage = await geyserRequest.getLinkedAccountForBedrockPlayer(id)
+    const response = await geyserRequest.getTextureId(id)
+    if (response) {
+      textureid = response.toString()
+    }
   } catch (error) {}
 
   let isLinked = false
-  if (Object.keys(linkage).length !== 0) {
-    isLinked = true
-  }
+  try {
+    isLinked = await geyserRequest.getLinkedAccountForBedrockPlayer(id)
+  } catch (error) {}
 
   const bedrockSetupObject = {
     gamertag,
@@ -41,15 +42,14 @@ const javaSetup = async (profileData) => {
   const textures = properties[0].value
   const formattedUuid = `${id.substr(0, 8)}-${id.substr(8, 4)}-${id.substr(12, 4)}-${id.substr(16, 4)}-${id.substr(20)}`
 
-  let isLinked = false
   let bedrockAccountDetails = {}
+  let isLinked = false
 
   try {
-    const linkage = await geyserRequest.getLinkedAccountForJavaPlayer(id)
+    isLinked = await geyserRequest.getLinkedAccountForJavaPlayer(id)
     const gamertag = await geyserRequest.getGamertag(linkage[0].bedrock_id)
 
-    if (Object.keys(linkage[0]).length !== 0) {
-      isLinked = true
+    if (isLinked) {
       bedrockAccountDetails = {
         bedrock_gamertag: gamertag,
         bedrock_xuid: linkage[0].bedrock_id,
@@ -61,7 +61,7 @@ const javaSetup = async (profileData) => {
   return {
     name,
     uuid: formattedUuid,
-    textureid: textures,
+    textureid: textures || 'no texture ID found.',
     skin: "https://mc-heads.net/body/" + name,
     isLinked,
     ...bedrockAccountDetails

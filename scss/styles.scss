@@ -8,7 +8,7 @@
 @font-face {
   font-family: 'MinecraftSeven';
   src:
-    url('../attributes/fonts/Minecraft-Seven_v2.woff') format('woff');
+    url('../fonts/Minecraft-Seven_v2.woff') format('woff');
   font-style: normal;
   font-weight: normal;
   text-rendering: optimizeLegibility;
@@ -23,10 +23,12 @@ body {
 }
 h1, h2, h3, h4, h5, h6 {
     @extend .text-white;
+    font-family: 'MinecraftSeven', sans-serif;
 }
 nav {
     @extend .navbar;
     @extend .navbar-expand-lg;
+    font-family: 'MinecraftSeven', sans-serif;
 }
 pre {
   white-space: pre-wrap;
@@ -44,6 +46,9 @@ th.theader {
 }
 .bg-body {
   background-color: #140c19a6 !important;
+}
+.container {
+  font-family: 'MinecraftSeven', sans-serif;
 }
 
 .avatar-bg {
@@ -78,6 +83,7 @@ th.theader {
 }
 .card {
   background-color: #140c19a6 !important;
+  font-family: 'MinecraftSeven', sans-serif;
 }
 .form-control, .form-select {
   background-color: #140c19a6 !important;

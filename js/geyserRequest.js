@@ -7,6 +7,7 @@ async function getLinkedAccountForBedrockPlayer(xuid) {
     return res.body
   } catch (err) {
     console.error(`Error retrieving java account from XUID (Geyser Api down) ${xuid}: ${err.message}`)
+    return false
   }
 }
 
@@ -17,6 +18,7 @@ async function getLinkedAccountForJavaPlayer(uuid) {
     return res.body
   } catch (err) {
     console.error(`Error retrieving bedrock data account from uuid (Geyser Api down) ${uuid}: ${err.message}`)
+    return false
   }
 }
 
@@ -28,6 +30,7 @@ async function getTextureId(xuid) {
     return textureId
   } catch (err) {
     console.error(`Error retrieving textureID account from XUID (Geyser Api down) ${xuid}: ${err.message}`)
+    return null
   }
 }
 
@@ -39,6 +42,7 @@ async function getGamertag(xuid) {
     return gamertag
   } catch (err) {
     console.error(`Error retrieving gamertag account from XUID (Geyser Api down) ${xuid}: ${err.message}`)
+    return null
   }
 }
 
