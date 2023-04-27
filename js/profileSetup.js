@@ -9,8 +9,7 @@ async function bedrockSetup(xboxData) {
   let isLinked = false
 
   try {
-    let textureidRaw = await geyserRequest.getTextureId(id)
-    textureid = `https://mc-heads.net/body/${textureidRaw}`
+    textureid = await geyserRequest.getTextureId(id)
     linkage = await geyserRequest.getLinkedAccountForBedrockPlayer(id)
   } catch (error) {}
 
@@ -26,7 +25,7 @@ async function bedrockSetup(xboxData) {
     gamescore,
     accounttier,
     textureid,
-    skin: textureid,
+    skin: `https://mc-heads.net/body/${textureid}`,
     isLinked,
   }
 
