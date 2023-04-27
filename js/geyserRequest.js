@@ -1,50 +1,53 @@
 import request from 'superagent'
-async function getLinkedAccountForBedrockPlayer(xuid) {
-  const endpoint = `https://api.geysermc.org/v2/link/bedrock/${xuid}`
-  try {
-    const res = await request.get(endpoint)
-    const linkedAccount = res.body
 
-    return linkedAccount
-  } catch (err) {
-    console.error(`Error retrieving java account from XUID (Geyser Api down) ${xuid}: ${err.message}`)
-    return null
+const API_BASE_URL = 'https://api.geysermc.org/v2'
+
+async function handleApiError(error, operationName) {
+  console.error(`Error during ${operationName}: ${error.message}`)
+  return null
+}
+
+async function getLinkedAccountForBedrockPlayer(xuid) {
+  const endpoint = `${API_BASE_URL}/link/bedrock/${xuid}`
+  
+  try {
+    const response = await request.get(endpoint)
+    return response.body
+  } catch (error) {
+    return handleApiError(error, 'getLinkedAccountForBedrockPlayer')
   }
 }
 
 async function getLinkedAccountForJavaPlayer(uuid) {
-  const endpoint = `https://api.geysermc.org/v2/link/java/${uuid}`
+  const endpoint = `${API_BASE_URL}/link/java/${uuid}`
+  
   try {
-    const res = await request.get(endpoint)
-    const linkedAccount = res.body
-    return linkedAccount
-  } catch (err) {
-    console.error(`Error retrieving bedrock data account from uuid (Geyser Api down) ${uuid}: ${err.message}`)
-    return null
+    const response = await request.get(endpoint)
+    return response.body
+  } catch (error) {
+    return handleApiError(error, 'getLinkedAccountForJavaPlayer')
   }
 }
 
 async function getTextureId(xuid) {
-  const endpoint = `https://api.geysermc.org/v2/skin/${xuid}`
+  const endpoint = `${API_BASE_URL}/skin/${xuid}`
+  
   try {
-    const res = await request.get(endpoint)
-    const textureId = res.body.texture_id
-    return textureId
-  } catch (err) {
-    console.error(`Error retrieving textureID account from XUID (Geyser Api down) ${xuid}: ${err.message}`)
-    return null
+    const response = await request.get(endpoint)
+    return response.body.texture_id
+  } catch (error) {
+    return handleApiError(error, 'getTextureId')
   }
 }
 
 async function getGamertag(xuid) {
-  const endpoint = `https://api.geysermc.org/v2/xbox/gamertag/${xuid}`
+  const endpoint = `${API_BASE_URL}/xbox/gamertag/${xuid}`
+  
   try {
-    const res = await request.get(endpoint)
-    const gamertag = res.body.gamertag
-    return gamertag
-  } catch (err) {
-    console.error(`Error retrieving gamertag account from XUID (Geyser Api down) ${xuid}: ${err.message}`)
-    return null
+    const response = await request.get(endpoint)
+    return response.body.gamertag
+  } catch (error) {
+    return handleApiError(error, 'getGamertag')
   }
 }
 
