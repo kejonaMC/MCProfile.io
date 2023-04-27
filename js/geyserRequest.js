@@ -1,13 +1,14 @@
 import request from 'superagent'
-
 async function getLinkedAccountForBedrockPlayer(xuid) {
   const endpoint = `https://api.geysermc.org/v2/link/bedrock/${xuid}`
   try {
     const res = await request.get(endpoint)
-    return res.body
+    const linkedAccount = res.body
+
+    return linkedAccount
   } catch (err) {
     console.error(`Error retrieving java account from XUID (Geyser Api down) ${xuid}: ${err.message}`)
-    return false
+    return null
   }
 }
 
@@ -15,10 +16,11 @@ async function getLinkedAccountForJavaPlayer(uuid) {
   const endpoint = `https://api.geysermc.org/v2/link/java/${uuid}`
   try {
     const res = await request.get(endpoint)
-    return res.body
+    const linkedAccount = res.body
+    return linkedAccount
   } catch (err) {
     console.error(`Error retrieving bedrock data account from uuid (Geyser Api down) ${uuid}: ${err.message}`)
-    return false
+    return null
   }
 }
 
