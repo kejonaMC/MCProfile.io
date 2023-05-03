@@ -8,7 +8,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="xs-col-12 col-md-4 avatar-bg">
-                          <img class="skin-render" src=<%=javaData.skin%>>
+                      <canvas id="skin_container"></canvas>
                     </div>
                     <div class="xs-col-12 col-md-8">
                         <table class="table table-striped">
@@ -47,11 +47,30 @@
                     </div>
                     <input type="button" class="btn btn-primary mt-3" onclick="location.href='/lookup';" value="Go Back">
                 </div>
-    
-                
             </div>
         </div>
     </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="./js/skinview3d.bundle.js"></script>
+  
+<script>
+  const skinURL = '<%=javaData.skin%>'
+  const capeURL = '<%=javaData.cape%>'
+  let skinViewer = new skinview3d.SkinViewer({
+    canvas: document.getElementById("skin_container"),
+    width: 250,
+    height: 350,
+    skin: skinURL
+  })
+  	// Load a cape
+	skinViewer.loadCape(capeURL)
+  // Set the background to a panoramic image
+  skinViewer.loadPanorama("./images/panorama.png")
+  // Apply an animation
+  skinViewer.animation = new skinview3d.IdleAnimation()
+  // Set the speed of the animation
+  skinViewer.animation.speed = 1
+</script>
 </body>
 
 <%- include('../partials/footer.ejs') %>

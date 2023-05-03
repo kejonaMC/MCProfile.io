@@ -25,31 +25,35 @@ async function bedrockSetup(xboxData) {
     gamescore,
     accounttier,
     textureid,
-    skin: `https://mc-heads.net/body/${textureid}`,
+    skin: `https://textures.minecraft.net/texture/${textureid}`,
     isLinked,
   }
 
   if (isLinked) {
-    const { java_id, java_name } = linkage;
-    bedrockSetupObject.java_uuid = java_id;
-    bedrockSetupObject.java_name = java_name;
+    const { java_id, java_name } = linkage
+    bedrockSetupObject.java_uuid = java_id
+    bedrockSetupObject.java_name = java_name
   }
 
-  return bedrockSetupObject;
+  return bedrockSetupObject
 }
 
 
 const javaSetup = async (profileData) => {
-  const { id, name, properties } = profileData;
-  const textures = properties[0].value;
-  const formattedUuid = `${id.substr(0, 8)}-${id.substr(8, 4)}-${id.substr(12, 4)}-${id.substr(16, 4)}-${id.substr(20)}`;
-  const textureid = textures || 'no texture ID found.';
+  const { id, name, properties } = profileData
+  const decodedTexture = Buffer.from(properties[0].value, 'base64').toString('utf-8')
 
-  let isLinked = false;
-  let bedrockAccountDetails = {};
+  const formattedUuid = `${id.substr(0, 8)}-${id.substr(8, 4)}-${id.substr(12, 4)}-${id.substr(16, 4)}-${id.substr(20)}`
+
+  const { SKIN, CAPE } = JSON.parse(decodedTexture).textures
+  const skinUrl = SKIN ? SKIN.url : null
+  const capeUrl = CAPE ? CAPE.url : null
+
+  let isLinked = false
+  let bedrockAccountDetails = {}
 
   try {
-    const linkage = await geyserRequest.getLinkedAccountForJavaPlayer(id);
+    const linkage = await geyserRequest.getLinkedAccountForJavaPlayer(id)
 
     if (linkage && linkage.length && Object.keys(linkage[0]).length !== 0) {
       isLinked = true;
@@ -57,19 +61,19 @@ const javaSetup = async (profileData) => {
         bedrock_gamertag: await geyserRequest.getGamertag(linkage[0].bedrock_id),
         bedrock_xuid: linkage[0].bedrock_id,
         bedrock_fuid: createFuuid(parseInt(linkage[0].bedrock_id, 10)),
-      };
+      }
     }
   } catch (error) {}
 
   return {
     name,
     uuid: formattedUuid,
-    textureid,
-    skin: `https://mc-heads.net/body/${name}`,
+    skin: skinUrl,
+    cape: capeUrl,
     isLinked,
     ...bedrockAccountDetails,
-  };
-};
+  }
+}
 
 const createFuuid = (xuid) => {
   const hexFUUID = `0000000000000000000${xuid.toString(16)}`
