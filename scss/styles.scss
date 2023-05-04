@@ -20,9 +20,13 @@ body {
   height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 footer {
-  margin-top: 5%;
+  margin-top: auto;
+  padding: 20px;
   font-family: 'MinecraftSeven', sans-serif;
 }
 .footer-text {
