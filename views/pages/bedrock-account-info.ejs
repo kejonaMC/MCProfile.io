@@ -40,6 +40,10 @@
                                 <td><code><%=bedrockData.isLinked%></code></td>
                               </tr>
                               <tr>
+                                <th>Skin Url</th>
+                                <td><a href ="<%=bedrockData.skin%>" target="_blank">Skin</a></td>
+                              </tr>
+                              <tr>
                                 <th>Floodgate UUID</th>
                                 <td><code><%=bedrockData.floodgateuid%></code></td>
                               </tr>
@@ -61,25 +65,11 @@
             </div>
         </div>
     </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="./js/skinview3d.bundle.js"></script>
-  
+</body>
+
 <script>
   const skinURL = '<%=bedrockData.skin%>'
-  let skinViewer = new skinview3d.SkinViewer({
-    canvas: document.getElementById("skin_container"),
-    width: 250,
-    height: 350,
-    skin: skinURL
-  })
-  // Set the background to a panoramic image
-  skinViewer.loadPanorama("./images/panorama.png")
-  // Apply an animation
-  skinViewer.animation = new skinview3d.IdleAnimation()
-  // Set the speed of the animation
-  skinViewer.animation.speed = 1
+  initSkinViewer(skinURL)
 </script>
-
-</body>
 
 <%- include('../partials/footer.ejs') %>

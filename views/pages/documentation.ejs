@@ -18,7 +18,7 @@
                 <pre>
                     <code class="overflow-scroll">
 const gamertag = "KobeNetwork";
-const url = `https://kejona.dev/api/v1/gamertag/${gamertag}`;
+const url = `https://kejona.dev/api/v1/bedrock/gamertag/${gamertag}`;
 
 fetch(url)
 .then(response => response.json())
@@ -27,7 +27,6 @@ fetch(url)
     gamertag: data.gamertag,
     xuid: data.xuid,
     floodgateuid: data.floodgateuid,
-    icon: data.icon
     };
     // get the value of "gamertag"
     const gamertag = jsonObject.gamertag;
@@ -58,7 +57,7 @@ fetch(url)
                 <pre>
                     <code class="overflow-scroll">
 String gamertag = "KobeNetwork";
-String url = "https://kejona.dev/api/v1/gamertag/" + gamertag;
+String url = "https://kejona.dev/api/v1/bedrock/gamertag/" + gamertag;
 
 OkHttpClient client = new OkHttpClient();
 

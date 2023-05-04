@@ -22,6 +22,14 @@
                                 <td><code><%=javaData.uuid%></code></td>
                               </tr>
                               <tr>
+                                <th>Skin Url</th>
+                                <td><a href ="<%=javaData.skin%>" target="_blank">Skin</a></td>
+                              </tr>
+                              <tr>
+                                <th>Cape Url</th>
+                                <td><a href="<%=javaData.cape%>" target="_blank">Cape</a></td>
+                              </tr>
+                              <tr>
                                 <th colspan="2" class="theader">GeyserMC Information</th>
                               </tr>
                               <tr>
@@ -50,27 +58,12 @@
             </div>
         </div>
     </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="./js/skinview3d.bundle.js"></script>
-  
+</body>
+
 <script>
   const skinURL = '<%=javaData.skin%>'
   const capeURL = '<%=javaData.cape%>'
-  let skinViewer = new skinview3d.SkinViewer({
-    canvas: document.getElementById("skin_container"),
-    width: 250,
-    height: 350,
-    skin: skinURL
-  })
-  	// Load a cape
-	skinViewer.loadCape(capeURL)
-  // Set the background to a panoramic image
-  skinViewer.loadPanorama("./images/panorama.png")
-  // Apply an animation
-  skinViewer.animation = new skinview3d.IdleAnimation()
-  // Set the speed of the animation
-  skinViewer.animation.speed = 1
+  initSkinViewer(skinURL, capeURL)
 </script>
-</body>
 
 <%- include('../partials/footer.ejs') %>
