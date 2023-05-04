@@ -1,90 +1,51 @@
 <%- include('../partials/head.ejs') %>
 <%- include('../partials/header.ejs') %>
+<script src="/js/lookup.js"></script>
 
 <body>
   <div class="counter" style="text-align: center">
     <code>Total of <%= requestCount %> requests have been handled.</code>
   </div>
-    <div class="container search">
-        <div class="card">
-            <div class="card-header">
-                Minecraft Profile Lookup
+  <div class="container search">
+    <div class="card">
+      <div class="card-header">
+        Minecraft Profile Lookup
+      </div>
+      <div class="card-body">
+        <form action="/lookup" method="POST">
+          <div class="container">
+            <div class="row g-3 mb-3">
+              <div class="col-12 col-md-6">
+                <label for="accountType" class="form-label">Edition</label>
+                <select name="accountType" id="accountType" class="form-select form-select-lg" required
+                  onchange="changeOptionValue(this.value)">
+                  <option value="Bedrock">Bedrock</option>
+                  <option value="Java">Java</option>
+                </select>
+              </div>
+              <div class="col-12 col-md-6">
+                <label for="searchType" class="form-label">Search With</label>
+                <select name="searchType" id="searchType" class="form-select form-select-lg" required>
+                  <option value="Username">Username</option>
+                  <option value="#" id="uuidOptionValue">#</option>
+                </select>
+              </div>
             </div>
-            <div class="card-body">
-              <form action="/lookup" method="POST">
-                <div class="container">
-                  <div class="row g-3 mb-3">
-                    <div class="col-12 col-md-6">
-                      <label for="accountType" class="form-label">Edition</label>
-                      <select name="accountType" id="accountType" class="form-select form-select-lg" required onchange="changeOptionValue(this.value)">
-                        <option value="Bedrock">Bedrock</option>
-                        <option value="Java">Java</option>
-                      </select>
-                    </div>
-                    <div class="col-12 col-md-6">
-                      <label for="searchType" class="form-label">Search With</label>
-                      <select name="searchType" id="searchType" class="form-select form-select-lg" required>
-                        <option value="Username">Username</option>
-                        <option value="#" id="uuidOptionValue">#</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="row mb-3">
-                    <div class="col">
-                      <label for="Input" id="InputLabel" class="form-label">Enter Username</label>
-                      <div class="input-group">
-                        <input class="form-control form-control-lg" type="text" name="Input" placeholder="KejonaMC1234" aria-describedby="search-submit">
-                        <button class="btn btn-mc-gray btn-large" type="submit" id="search-submit">Search</button>
-                      </div>
-                    </div>
-                  </div>
-              </form>
+            <div class="row mb-3">
+              <div class="col">
+                <label for="Input" id="InputLabel" class="form-label">Enter Username</label>
+                <div class="input-group">
+                  <input class="form-control form-control-lg" type="text" name="Input" placeholder="KejonaMC1234"
+                    aria-describedby="search-submit">
+                  <button class="btn btn-mc-gray btn-large" type="submit" id="search-submit">Search</button>
+                </div>
+              </div>
             </div>
-        </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </body>
 
 <%- include('../partials/footer.ejs') %>
-<script>
-  document.getElementById("nav-lookup").classList.add("active");
-</script>
-<script>
-const searchTypeSelect = document.querySelector('select[name="searchType"]');
-const accountTypeSelect = document.querySelector('select[name="accountType"]');
-const inputLabel = document.getElementById('InputLabel');
-const uuidOptionValue = document.getElementById('uuidOptionValue');
-
-function changeOptionValue(accountType) {
-  if (accountType === 'Bedrock') {
-    uuidOptionValue.textContent = 'Floodgate UUID';
-    inputLabel.textContent = 'Enter Floodgate UUID';
-  } else if (accountType === 'Java') {
-    uuidOptionValue.textContent = 'UUID';
-    inputLabel.textContent = 'Enter UUID';
-  }
-  if (searchTypeSelect.value === 'Username') {
-    inputLabel.textContent = 'Enter Username';
-    document.querySelector('input[name="Input"]').setAttribute('placeholder', 'KejonaMC1234');
-  } else {
-    document.querySelector('input[name="Input"]').setAttribute('placeholder', inputLabel.textContent);
-  }
-}
-
-// Set the default option value and input label
-changeOptionValue('Bedrock');
-
-accountTypeSelect.addEventListener('change', (event) => {
-  const selectedOption = event.target.value;
-  changeOptionValue(selectedOption);
-});
-
-searchTypeSelect.addEventListener('change', (event) => {
-  const selectedOption = event.target.value;
-  if (selectedOption === 'Username') {
-    inputLabel.textContent = 'Enter Username';
-    document.querySelector('input[name="Input"]').setAttribute('placeholder', 'KejonaMC1234');
-  } else {
-    changeOptionValue(accountTypeSelect.value);
-  }
-});
-</script>

@@ -1,31 +1,31 @@
 <%- include('../partials/head.ejs') %>
-  <%- include('../partials/header.ejs') %>
+<%- include('../partials/header.ejs') %>
 
-    <body>
-      <div class="container">
-        <div class="p-md-5 mb-4 bg-body-tertiary border rounded-3 jumbotron">
-          <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold">API</h1>
-            <p class="col-md-8 fs-4">
-              An API endpoint to retrieve someone's Minecraft profile:<br>
-              Base URL: <a href="https://kejona.dev">https://kejona.dev</a>
-            </p>
-          </div>
-        </div>
-        <div class="accordion" id="rest-accordion">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-              <button class="accordion-button collasped bg-body-tertiary" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                [GET] /api/v1/bedrock/xuid/{xuid}
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-              data-bs-parent="#rest-accordion">
-              <div class="accordion-body bg-body-tertiary">
-                <h4>Server Response:</h4>
-                <p>
-                  <code>
+<body>
+  <div class="container">
+    <div class="p-md-5 mb-4 bg-body-tertiary border rounded-3 jumbotron">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">API</h1>
+        <p class="col-md-8 fs-4">
+          An API endpoint to retrieve someone's Minecraft profile:<br>
+          Base URL: <a href="https://kejona.dev">https://kejona.dev</a>
+        </p>
+      </div>
+    </div>
+    <div class="accordion" id="rest-accordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button collasped bg-body-tertiary" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            [GET] /api/v1/bedrock/xuid/{xuid}
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+          data-bs-parent="#rest-accordion">
+          <div class="accordion-body bg-body-tertiary">
+            <h4>Server Response:</h4>
+            <p>
+              <code>
                         <br>
                         {
                             <br>
@@ -53,23 +53,23 @@
                             <br>
                         }
                     </code>
-                </p>
-              </div>
-            </div>
+            </p>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo">
-              <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                [GET] /api/v1/bedrock/gamertag/{gamertag}
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-              data-bs-parent="#rest-accordion">
-              <div class="accordion-body bg-body-tertiary">
-                <h4>Server Response:</h4>
-                <p>
-                  <code>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            [GET] /api/v1/bedrock/gamertag/{gamertag}
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+          data-bs-parent="#rest-accordion">
+          <div class="accordion-body bg-body-tertiary">
+            <h4>Server Response:</h4>
+            <p>
+              <code>
                         <br>
                         {
                           <br>
@@ -97,23 +97,23 @@
                           <br>
                         }
                     </code>
-                </p>
-              </div>
-            </div>
+            </p>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingThree">
-              <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                [GET] /api/v1/bedrock/fuid/{fuid}
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-              data-bs-parent="#rest-accordion">
-              <div class="accordion-body bg-body-tertiary">
-                <h4>Server Response:</h4>
-                <p>
-                  <code>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            [GET] /api/v1/bedrock/fuid/{fuid}
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+          data-bs-parent="#rest-accordion">
+          <div class="accordion-body bg-body-tertiary">
+            <h4>Server Response:</h4>
+            <p>
+              <code>
                         <br>
                         {
                           <br>
@@ -141,23 +141,23 @@
                           <br>
                         }
                     </code>
-                </p>
-              </div>
-            </div>
+            </p>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingFoor">
-              <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFoor" aria-expanded="false" aria-controls="collapseFoor">
-                [GET] /api/v1/java/username/{username}
-              </button>
-            </h2>
-            <div id="collapseFoor" class="accordion-collapse collapse" aria-labelledby="headingFoor"
-              data-bs-parent="#rest-accordion">
-              <div class="accordion-body bg-body-tertiary">
-                <h4>Server Response:</h4>
-                <p>
-                  <code>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFoor">
+          <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseFoor" aria-expanded="false" aria-controls="collapseFoor">
+            [GET] /api/v1/java/username/{username}
+          </button>
+        </h2>
+        <div id="collapseFoor" class="accordion-collapse collapse" aria-labelledby="headingFoor"
+          data-bs-parent="#rest-accordion">
+          <div class="accordion-body bg-body-tertiary">
+            <h4>Server Response:</h4>
+            <p>
+              <code>
                     <br>
                     {
                       <br>
@@ -179,23 +179,23 @@
                       <br>
                         }
                     </code>
-                </p>
-              </div>
-            </div>
+            </p>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingFive">
-              <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                [GET] /api/v1/java/uuid/{uuid}
-              </button>
-            </h2>
-            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-              data-bs-parent="#rest-accordion">
-              <div class="accordion-body bg-body-tertiary">
-                <h4>Server Response:</h4>
-                <p>
-                  <code>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFive">
+          <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+            [GET] /api/v1/java/uuid/{uuid}
+          </button>
+        </h2>
+        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+          data-bs-parent="#rest-accordion">
+          <div class="accordion-body bg-body-tertiary">
+            <h4>Server Response:</h4>
+            <p>
+              <code>
                         <br>
                         {
                           <br>
@@ -217,16 +217,16 @@
                           <br>
                         }
                     </code>
-                </p>
-              </div>
-            </div>
+            </p>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-    </body>
-    <%- include('../partials/footer.ejs') %>
+</body>
+<%- include('../partials/footer.ejs') %>
 
-    <script>
-      document.getElementById("nav-endpoints").classList.add("active");
-    </script>
+<script>
+  document.getElementById("nav-endpoints").classList.add("active");
+</script>

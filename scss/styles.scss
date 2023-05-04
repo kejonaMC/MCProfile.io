@@ -21,6 +21,14 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+footer {
+  margin-top: 5%;
+  font-family: 'MinecraftSeven', sans-serif;
+}
+.footer-text {
+  margin-left: 3%;
+  margin-right: 3% 
+}
 h1, h2, h3, h4, h5, h6 {
     @extend .text-white;
     font-family: 'MinecraftSeven', sans-serif;
