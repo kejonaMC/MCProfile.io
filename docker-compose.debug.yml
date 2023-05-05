@@ -1,8 +1,8 @@
 version: '3.4'
 
 services:
-  xuidapi:
-    image: xuidapi
+  mcprofile:
+    image: mcprofile
     build:
       context: .
       dockerfile: ./Dockerfile
