@@ -43,10 +43,14 @@
                   <th>Geyser Linked</th>
                   <td><code><%=bedrockData.isLinked%></code></td>
                 </tr>
-                <tr>
-                  <th>Skin Url</th>
-                  <td><a href="<%=bedrockData.skin%>" target="_blank">Skin</a></td>
-                </tr>
+                  <tr>
+                    <th>Skin Url</th>
+                    <% if (bedrockData.skin) { %>
+                    <td><a href="<%=bedrockData.skin%>" target="_blank">Skin</a></td>
+                    <% } else { %>
+                      <td>Player skin was not yet uploaded.</td>
+                    <% } %>
+                  </tr>
                 <tr>
                   <th>Floodgate UUID</th>
                   <td><code><%=bedrockData.floodgateuid%></code></td>

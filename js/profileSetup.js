@@ -4,7 +4,8 @@ import geyserRequest from '../js/geyserRequest.js'
 async function bedrockSetup(xboxData) {
   const { profileUsers: [{ settings, id }] } = xboxData
   const [gamertag, icon, gamescore, accounttier] = settings.map((s) => s.value)
-  let textureid = 'no texture ID found.'
+  const skinBaseUrl = 'https://textures.minecraft.net/texture/'
+  let textureid
   let linkage = {}
   let isLinked = false
 
@@ -25,7 +26,7 @@ async function bedrockSetup(xboxData) {
     gamescore,
     accounttier,
     textureid,
-    skin: `https://textures.minecraft.net/texture/${textureid}`,
+    skin: textureid ? skinBaseUrl + textureid : null,
     isLinked,
   }
 

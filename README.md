@@ -1,6 +1,6 @@
-# gfapi-website
+# MCProfile.io
 
-https://uuid.kejona.dev/ 
+https://mcprofile.io/ 
 
 how does it work?
 
