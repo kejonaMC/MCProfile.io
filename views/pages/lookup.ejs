@@ -4,7 +4,11 @@
 
 <body>
   <div class="counter" style="text-align: center">
-    <code>Total of <%= totalRequests %> requests have been handled.</code>
+    <% if (totalRequests !== null) { %>
+      <code>Total of <%= totalRequests %> requests have been handled.</code>
+    <% } else { %>
+      <code>Our service has encountered problems and will temporarily operate at a reduced speed.</code>
+    <% } %>
   </div>
     <div class="container search">
         <div class="card">

@@ -28,7 +28,7 @@ const PATHS = {
 router.get(PATHS.LOOKUP, async (req, res) => {
   try {
     const totalRequests = await getTotalRequests();
-    res.render('pages/lookup', { totalRequests: totalRequests || 0, title: TITLES.LOOKUP });
+    res.render('pages/lookup', { totalRequests: totalRequests || null, title: TITLES.LOOKUP });
   } catch (error) {
     res.status(500).render('errors/500', { title: TITLES.ERROR_500 })
   }
