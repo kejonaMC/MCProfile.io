@@ -2,7 +2,7 @@ import express from 'express'
 import profile from '../js/profileSetup.js'
 import xboxRequest from '../js/xboxRequest.js'
 import minecraftRequest from '../js/minecraftRequest.js'
-import { requestCount } from '../js/requestCounter.js'
+import { getTotalRequests } from '../js/database.js'
 
 const router = express.Router()
 
@@ -27,7 +27,8 @@ const PATHS = {
 
 router.get(PATHS.LOOKUP, async (req, res) => {
   try {
-    res.render('pages/lookup', { title: TITLES.LOOKUP, requestCount })
+    const totalRequests = await getTotalRequests();
+    res.render('pages/lookup', { totalRequests: totalRequests || 0, title: TITLES.LOOKUP });
   } catch (error) {
     res.status(500).render('errors/500', { title: TITLES.ERROR_500 })
   }
