@@ -1,9 +1,10 @@
 import dotenv from 'dotenv'
+dotenv.config()
 import express from 'express'
 import bodyParser from 'body-parser'
 import ejs from 'ejs'
 import rateLimit from 'express-rate-limit'
-import logger from './js/logger.js'
+import requestLogger from './js/requestLogger.js'
 
 // Routes
 import lookupRouter from './routes/lookup.js'
@@ -17,7 +18,6 @@ const limiter = rateLimit({
   max: 100,
 })
 
-dotenv.config()
 const port = process.env.PORT || 8888
 const app = express()
 
@@ -29,7 +29,7 @@ app.use(express.static('attributes'))
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(limiter)
-app.use(logger)
+app.use(requestLogger);
 
 // Router Files
 app.use('/lookup', lookupRouter)
