@@ -19,7 +19,7 @@
               <tbody>
                 <tr>
                   <th>Username</th>
-                  <td><code><%=javaData.name%></code></td>
+                  <td><code><%=javaData.username%></code></td>
                 </tr>
                 <tr>
                   <th>UUID</th>
@@ -42,9 +42,9 @@
                 </tr>
                 <tr>
                   <th>Geyser Linked</th>
-                  <td><code><%=javaData.isLinked%></code></td>
+                  <td><code><%=javaData.linked%></code></td>
                 </tr>
-                <% if (javaData.isLinked) { %>
+                <% if (javaData.linked) { %>
                   <tr>
                     <th>Bedrock Gamertag</th>
                     <td><code><%=javaData.bedrock_gamertag%></code></td>

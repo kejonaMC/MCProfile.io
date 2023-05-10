@@ -7,7 +7,7 @@ async function bedrockSetup(xboxData) {
   const skinBaseUrl = 'https://textures.minecraft.net/texture/'
   let textureid
   let linkage = {}
-  let isLinked = false
+  let linked = false
 
   try {
     textureid = await geyserRequest.getTextureId(id)
@@ -15,7 +15,7 @@ async function bedrockSetup(xboxData) {
   } catch (error) {}
 
   if (linkage && Object.keys(linkage).length !== 0) {
-    isLinked = true
+    linked = true
   }
 
   const bedrockSetupObject = {
@@ -27,10 +27,10 @@ async function bedrockSetup(xboxData) {
     accounttier,
     textureid,
     skin: textureid ? skinBaseUrl + textureid : null,
-    isLinked,
+    linked,
   }
 
-  if (isLinked) {
+  if (linked) {
     const { java_id, java_name } = linkage
     bedrockSetupObject.java_uuid = java_id
     bedrockSetupObject.java_name = java_name
@@ -50,14 +50,14 @@ const javaSetup = async (profileData) => {
   const skinUrl = SKIN ? SKIN.url : null
   const capeUrl = CAPE ? CAPE.url : null
 
-  let isLinked = false
+  let linked = false
   let bedrockAccountDetails = {}
 
   try {
     const linkage = await geyserRequest.getLinkedAccountForJavaPlayer(id)
 
     if (linkage && linkage.length && Object.keys(linkage[0]).length !== 0) {
-      isLinked = true;
+      linked = true;
       bedrockAccountDetails = {
         bedrock_gamertag: await geyserRequest.getGamertag(linkage[0].bedrock_id),
         bedrock_xuid: linkage[0].bedrock_id,
@@ -67,11 +67,11 @@ const javaSetup = async (profileData) => {
   } catch (error) {}
 
   return {
-    name,
+    username: name,
     uuid: formattedUuid,
     skin: skinUrl,
     cape: capeUrl,
-    isLinked,
+    linked,
     ...bedrockAccountDetails,
   }
 }

@@ -8,7 +8,7 @@
         <h1 class="display-5 fw-bold">API</h1>
         <p class="col-md-8 fs-4">
           An API endpoint to retrieve someone's Minecraft profile:<br>
-          Base URL: <a href="https://kejona.dev">https://mcprofile.io</a>
+          Base URL: <a href="https://mcprofile.io">https://mcprofile.io</a>
         </p>
       </div>
     </div>
@@ -26,33 +26,9 @@
             <h4>Server Response:</h4>
             <p>
               <code>
-                        <br>
-                        {
-                            <br>
-                            &emsp;"gamertag":"ImSoAwesomeDude",
-                            <br>
-                            &emsp;"xuid":"2534567803960946",
-                            <br>
-                            &emsp;"floodgateuid":"00000000-0000-0000-0001-02fd33445566",
-                            <br>
-                            &emsp;"icon":"https://preview.redd.it/2uyj7hu2d4x31.jpg",
-                            <br>
-                            &emsp;"gamescore":"485",
-                            <br>
-                            &emsp;"accounttier":"Silver",
-                            <br>
-                            &emsp;"textureid":"b927ccb310b62437c5eb7b5818c18dd170a1890ca433aa74c7dbd1d476fe19e9",
-                            <br>
-                            &emsp;"skin":"https://mc-heads.net/body/b927ccb310b62437c5eb7b5818c18dd170a1890ca433aa74c7dbd1d476fe19e9",
-                            <br>
-                            &emsp;"isLinked":true,
-                            <br>
-                            &emsp;"java_uuid":"1c7f6d74-2c65-4d6a-a6e2-575351171c76",
-                            <br>
-                            &emsp;"java_name":"Jens_Co",
-                            <br>
-                        }
-                    </code>
+                <pre id="bedrock-container1"></pre>
+              </code>
+              If linked is false java_name and java_uuid will not be present.
             </p>
           </div>
         </div>
@@ -70,33 +46,9 @@
             <h4>Server Response:</h4>
             <p>
               <code>
-                        <br>
-                        {
-                          <br>
-                          &emsp;"gamertag":"ImSoAwesomeDude",
-                          <br>
-                          &emsp;"xuid":"2534567803960946",
-                          <br>
-                          &emsp;"floodgateuid":"00000000-0000-0000-0001-02fd33445566",
-                          <br>
-                          &emsp;"icon":"https://preview.redd.it/2uyj7hu2d4x31.jpg",
-                          <br>
-                          &emsp;"gamescore":"485",
-                          <br>
-                          &emsp;"accounttier":"Silver",
-                          <br>
-                          &emsp;"textureid":"b927ccb310b62437c5eb7b5818c18dd170a1890ca433aa74c7dbd1d476fe19e9",
-                          <br>
-                          &emsp;"skin":"https://mc-heads.net/body/b927ccb310b62437c5eb7b5818c18dd170a1890ca433aa74c7dbd1d476fe19e9",
-                          <br>
-                          &emsp;"isLinked":true,
-                          <br>
-                          &emsp;"java_uuid":"1c7f6d74-2c65-4d6a-a6e2-575351171c76",
-                          <br>
-                          &emsp;"java_name":"Jens_Co",
-                          <br>
-                        }
-                    </code>
+                <pre id="bedrock-container2"></pre>
+              </code>
+              If linked is false java* will not be present.
             </p>
           </div>
         </div>
@@ -114,33 +66,9 @@
             <h4>Server Response:</h4>
             <p>
               <code>
-                        <br>
-                        {
-                          <br>
-                          &emsp;"gamertag":"ImSoAwesomeDude",
-                          <br>
-                          &emsp;"xuid":"2534567803960946",
-                          <br>
-                          &emsp;"floodgateuid":"00000000-0000-0000-0001-02fd33445566",
-                          <br>
-                          &emsp;"icon":"https://preview.redd.it/2uyj7hu2d4x31.jpg",
-                          <br>
-                          &emsp;"gamescore":"485",
-                          <br>
-                          &emsp;"accounttier":"Silver",
-                          <br>
-                          &emsp;"textureid":"b927ccb310b62437c5eb7b5818c18dd170a1890ca433aa74c7dbd1d476fe19e9",
-                          <br>
-                          &emsp;"skin":"https://mc-heads.net/body/b927ccb310b62437c5eb7b5818c18dd170a1890ca433aa74c7dbd1d476fe19e9",
-                          <br>
-                          &emsp;"isLinked":true,
-                          <br>
-                          &emsp;"java_uuid":"1c7f6d74-2c65-4d6a-a6e2-575351171c76",
-                          <br>
-                          &emsp;"java_name":"Jens_Co",
-                          <br>
-                        }
-                    </code>
+                <pre id="bedrock-container3"></pre>
+              </code>
+              If linked is false java* will not be present.
             </p>
           </div>
         </div>
@@ -158,27 +86,9 @@
             <h4>Server Response:</h4>
             <p>
               <code>
-                    <br>
-                    {
-                      <br>
-                      &emsp;"name":"rtm516",
-                      <br>
-                      &emsp;"uuid":"cb7a4cqc-a7cd-4846-8b6f-477de8f5f3ee",
-                      <br>
-                      &emsp;"textureid":"ewogICJ0aW1lc3RhbXAiIDogMTY4MjExNjg3ODI3MSwKICAicHJvZmlsZUlkIiA6ICJjYjdhNGMwY2E3Y2Q0ODQ2OGI2ZjQ3N2RlOGY1ZjNlZSIsCiAgInByb2ZpbGVOYW1lIiA6ICJydG01MTYiLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzk1YjFlNDNlMzZlOTQzODcwYTRhZGY4ZGNkMzA3MzgzMDg4YjZkNDVkYzlkZmZmZWI4YWE5NzgxMzM0MmQxMCIKICAgIH0sCiAgICAiQ0FQRSIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjlhNzY1Mzc2NDc5ODlmOWEwYjZkMDAxZTMyMGRhYzU5MWMzNTllOWU2MWEzMWY0Y2UxMWM4OGYyMDdmMGFkNCIKICAgIH0KICB9Cn0",
-                      <br>
-                      &emsp;"skin":"https://mc-heads.net/body/rtm516",
-                      <br>
-                      &emsp;"isLinked":true,
-                      <br>
-                      &emsp;"bedrock_gamertag":"rtm516",
-                      <br>
-                      &emsp;"bedrock_xuid":"2533274873007797",
-                      <br>
-                      &emsp;"bedrock_fuid":"00000000-0000-0000-0009-000004ec8eb0",
-                      <br>
-                        }
-                    </code>
+                <pre id="java-container1"></pre>
+              </code>
+              If linked is false bedrock* will not be present.
             </p>
           </div>
         </div>
@@ -196,27 +106,10 @@
             <h4>Server Response:</h4>
             <p>
               <code>
-                        <br>
-                        {
-                          <br>
-                          &emsp;"name":"rtm516",
-                          <br>
-                          &emsp;"uuid":"cb7a4cqc-a7cd-4846-8b6f-477de8f5f3ee",
-                          <br>
-                          &emsp;"textureid":"ewogICJ0aW1lc3RhbXAiIDogMTY4MjExNjg3ODI3MSwKICAicHJvZmlsZUlkIiA6ICJjYjdhNGMwY2E3Y2Q0ODQ2OGI2ZjQ3N2RlOGY1ZjNlZSIsCiAgInByb2ZpbGVOYW1lIiA6ICJydG01MTYiLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzk1YjFlNDNlMzZlOTQzODcwYTRhZGY4ZGNkMzA3MzgzMDg4YjZkNDVkYzlkZmZmZWI4YWE5NzgxMzM0MmQxMCIKICAgIH0sCiAgICAiQ0FQRSIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjlhNzY1Mzc2NDc5ODlmOWEwYjZkMDAxZTMyMGRhYzU5MWMzNTllOWU2MWEzMWY0Y2UxMWM4OGYyMDdmMGFkNCIKICAgIH0KICB9Cn0",
-                          <br>
-                          &emsp;"skin":"https://mc-heads.net/body/rtm516",
-                          <br>
-                          &emsp;"isLinked":true,
-                          <br>
-                          &emsp;"bedrock_gamertag":"rtm516",
-                          <br>
-                          &emsp;"bedrock_xuid":"2533274873007797",
-                          <br>
-                          &emsp;"bedrock_fuid":"00000000-0000-0000-0009-000004ec8eb0",
-                          <br>
-                        }
-                    </code>
+                <pre id="java-container2"></pre>
+              </code>
+              If linked is false bedrock* will not be present.
+
             </p>
           </div>
         </div>
@@ -228,5 +121,17 @@
 <%- include('../partials/footer.ejs') %>
 
 <script>
-  document.getElementById("nav-endpoints").classList.add("active");
+  document.getElementById("nav-endpoints").classList.add("active")
+  var bedrockjson = {"gamertag":"kobenetwork","xuid":"25332248730d7792","floodgateuid":"00000000-0000-0000-0009-000004ed8eb0","icon":"https://images-eds-ssl.xboxlive.com/image?url=img&format=png","gamescore":"14895","accounttier":"Silver","textureid":"5006a1a7340","skin":"https://textures.minecraft.net/texture/5006a1a7340","linked":true,"java_uuid":"cb7a4c0c-a7cd-4846-8bdf-477de8f5f3ee","java_name":"jensco"}
+  var javajson = {"username":"jensco","uuid":"cb7a4c0c-a7cd-4846-8c6f-477de8f5d3ee","skin":"http://textures.minecraft.net/texture/123","cape":"http://textures.minecraft.net/texture/123","linked":true,"bedrock_gamertag":"kobenetwork","bedrock_xuid":2533224873007792,"bedrock_fuid":"00000000-0000-0000-0009-000004ed8eb0"}
+  
+  var formattedBedrockJson = JSON.stringify(bedrockjson, null, 2)
+  var formattedJavaJson = JSON.stringify(javajson, null, 2)
+
+  document.getElementById("bedrock-container1").textContent = formattedBedrockJson
+  document.getElementById("bedrock-container2").textContent = formattedBedrockJson
+  document.getElementById("bedrock-container3").textContent = formattedBedrockJson
+  document.getElementById("java-container1").textContent = formattedJavaJson
+  document.getElementById("java-container2").textContent = formattedJavaJson
+
 </script>

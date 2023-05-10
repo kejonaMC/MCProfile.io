@@ -103,6 +103,14 @@ th.theader {
 .accordion {
   margin-bottom: 5%;
 }
+.javajson-display, .bedrockjson-display {
+  white-space: pre;
+  font-family: monospace;
+  font-size: 14px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 @media (min-width: 576px) {
     /*sm equivalent*/
     .avatar {

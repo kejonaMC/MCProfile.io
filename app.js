@@ -10,7 +10,6 @@ import requestLogger from './js/requestLogger.js'
 import lookupRouter from './routes/lookup.js'
 import apiRouter from './routes/api.js'
 import endpointsRouter from './routes/endpoints.js'
-import documentationRouter from './routes/documentation.js'
 
 // Rate limiter for API and cache
 const limiter = rateLimit({
@@ -35,7 +34,6 @@ app.use(requestLogger);
 app.use('/lookup', lookupRouter)
 app.use('/api', apiRouter)
 app.use('/endpoints', endpointsRouter)
-app.use('/documentation', documentationRouter)
 
 // Error handling middleware
 // Specific error handling middleware for different types of errors.
