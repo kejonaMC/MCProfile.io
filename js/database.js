@@ -5,10 +5,11 @@ import moment from 'moment'
 // Load the environment variables from .env file
 dotenv.config()
 
+// Create a connection pool with the database credentials
 const pool = mysql.createPool({
   host: process.env.DBHOST,
   user: process.env.DBUSERNAME,
-  port: 32768,
+  port: process.env.DBPORT,
   password: process.env.DBPASSWORD,
   database: 'mcprofile',
   waitForConnections: true,
@@ -16,6 +17,9 @@ const pool = mysql.createPool({
   queueLimit: 0,
 })
 
+let connection
+
+// Create the necessary tables in the database
 const createTables = async () => {
   try {
     const query1 =
@@ -24,12 +28,14 @@ const createTables = async () => {
       'CREATE TABLE IF NOT EXISTS request_totals (id INT PRIMARY KEY, total INT)'
     const query3 =
       'CREATE TABLE IF NOT EXISTS request_logs (id INT AUTO_INCREMENT PRIMARY KEY, ip VARCHAR(255), endpoint VARCHAR(255), request_time TIMESTAMP)'
+
     const conn = await pool.getConnection()
+
     try {
       await conn.query(query1)
       await conn.query(query2)
       await conn.query(query3)
-      console.log('Tables created successfully')
+      console.log('Tables created/loaded successfully')
     } finally {
       conn.release()
     }
@@ -38,17 +44,26 @@ const createTables = async () => {
   }
 }
 
-const connectToDb = async () => {
+// Check the connection to the database and retry if necessary
+const checkConnection = async () => {
   try {
-    await pool.getConnection()
-    console.log('Database connected successfully')
-    await createTables()
+    if (!connection || connection.state === 'disconnected') {
+      connection = await pool.getConnection()
+      console.log('Database connected successfully')
+      await createTables()
+    }
   } catch (error) {
     console.error(`Error connecting to database: ${error}`)
   }
 }
 
-connectToDb()
+// Check the connection every 10 minutes
+setInterval(() => {
+  checkConnection()
+}, 10 * 60 * 1000)
+
+// Connect to the database and create the necessary tables
+checkConnection()
 
 const incrementRequestCount = async (ip) => {
   try {
