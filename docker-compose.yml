@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   mcprofile:
-    image: mcprofile
+    image: mcprofile:latest
     build:
       context: .
       dockerfile: ./Dockerfile
