@@ -20,12 +20,7 @@ const TITLES = {
   ERROR_404: 'Error 404',
 }
 
-const PATHS = {
-  LOOKUP: '/',
-  ACCOUNT_NOT_FOUND: '/account-not-found',
-}
-
-router.get(PATHS.LOOKUP, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const totalRequests = await getTotalRequests();
     res.render('pages/lookup', { totalRequests: totalRequests || null, title: TITLES.LOOKUP });
@@ -34,7 +29,7 @@ router.get(PATHS.LOOKUP, async (req, res) => {
   }
 })
 
-router.post(PATHS.LOOKUP, async (req, res) => {
+router.post('/', async (req, res) => {
   const { accountType, searchType, Input } = req.body
 
   try {

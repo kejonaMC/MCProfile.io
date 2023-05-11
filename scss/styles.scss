@@ -1,7 +1,6 @@
 @import "../node_modules/bootswatch/dist/zephyr/variables";
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "../node_modules/bootswatch/dist/zephyr/bootswatch";
-
 @import "./colors.scss";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css");
 
@@ -111,7 +110,7 @@ th.theader {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-img {
+.imgerror {
   max-width: 60%;
   min-width: 20%;
   height: auto;

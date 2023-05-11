@@ -31,7 +31,22 @@ app.use(limiter)
 app.use(requestLogger);
 
 // Router Files
-app.use('/lookup', lookupRouter)
+// Set up a custom middleware to intercept requests to the root URL
+app.use((req, res, next) => {
+  // Check if the requested URL is the root URL
+  if (req.originalUrl === '/') {
+    if (req.method === 'GET') {
+      // If it's a GET request to the root URL, render the response directly from the lookup router
+      return lookupRouter(req, res, next)
+    } else if (req.method === 'POST') {
+      // If it's a POST request to the root URL, pass it on to the lookup router
+      return lookupRouter.handle(req, res, next)
+    }
+  }
+  // If not, continue processing the request
+  next()
+})
+
 app.use('/api', apiRouter)
 app.use('/endpoints', endpointsRouter)
 
