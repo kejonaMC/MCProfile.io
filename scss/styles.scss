@@ -111,6 +111,15 @@ th.theader {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+img {
+  max-width: 100%;
+  min-width: 20%;
+  height: auto;
+}
+.btnfour {
+  display: block;
+  margin: auto;
+}
 @media (min-width: 576px) {
     /*sm equivalent*/
     .avatar {
