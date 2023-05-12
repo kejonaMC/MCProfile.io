@@ -11,15 +11,15 @@ async function requestLogger(req, res, next) {
 
   try {
     // Check if the request should be logged
-    if (endpoint === endpointPing || !endpoint.startsWith('/lookup') && !endpoint.startsWith('/api')) {
+    if (endpoint === endpointPing || !endpoint === '/' && !endpoint.startsWith('/api')) {
       // Skip logging and continue with the middleware chain
       return next()
     }
 
-    if (endpoint.startsWith('/lookup')) {
+    if (endpoint === '/') {
       // Append the input value to the endpoint for /lookup requests
       if (req.body && req.body.Input) {
-        endpoint += `/${req.body.Input}`
+        endpoint += `${req.body.Input}`
       } else {
         // Skip logging and continue with the middleware chain
         return next()
