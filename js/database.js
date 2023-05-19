@@ -11,7 +11,7 @@ const pool = mysql.createPool({
   user: process.env.DBUSERNAME,
   port: process.env.DBPORT,
   password: process.env.DBPASSWORD,
-  database: 'mcprofile',
+  database: 'test',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
@@ -28,13 +28,23 @@ const createTables = async () => {
       'CREATE TABLE IF NOT EXISTS request_totals (id INT PRIMARY KEY, total INT)'
     const query3 =
       'CREATE TABLE IF NOT EXISTS request_logs (id INT AUTO_INCREMENT PRIMARY KEY, ip VARCHAR(255), endpoint VARCHAR(255), request_time TIMESTAMP)'
-
+      const query4 = `CREATE TABLE IF NOT EXISTS users (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255),
+        email VARCHAR(255),
+        password VARCHAR(255),
+        verification_token VARCHAR(255),
+        verified BOOLEAN,
+        reset_token VARCHAR(255)
+      )`
+      
     const conn = await pool.getConnection()
 
     try {
       await conn.query(query1)
       await conn.query(query2)
       await conn.query(query3)
+      await conn.query(query4)
       console.log('Tables created/loaded successfully')
     } finally {
       conn.release()
@@ -127,6 +137,118 @@ const getTotalRequests = async () => {
   }
 }
 
+const createUser = async (name, email, hashedPassword, verificationToken) => {
+  try {
+    const conn = await pool.getConnection()
+    const query =
+      'INSERT INTO users (name, email, password, verification_token) VALUES (?, ?, ?, ?)'
+    const [result] = await conn.query(query, [
+      name,
+      email,
+      hashedPassword,
+      verificationToken,
+    ])
+    conn.release()
+    return result.insertId
+  } catch (error) {
+    console.error(`Error creating user: ${error}`)
+    throw error
+  }
+}
+
+const getUserByEmail = async (email) => {
+  try {
+    const conn = await pool.getConnection()
+    const query = 'SELECT * FROM users WHERE email = ?'
+    const [rows] = await conn.query(query, [email])
+    conn.release()
+    return rows.length ? rows[0] : null
+  } catch (error) {
+    console.error(`Error retrieving user by email: ${error}`)
+    throw error
+  }
+}
+
+const updateUserPassword = async (userId, newPassword) => {
+  try {
+    const conn = await pool.getConnection()
+    const query = 'UPDATE users SET password = ? WHERE id = ?'
+    const [result] = await conn.query(query, [newPassword, userId])
+    conn.release()
+    return result.affectedRows > 0
+  } catch (error) {
+    console.error(`Error updating user password: ${error}`)
+    throw error
+  }
+}
+
+const getUserByVerificationToken = async (verificationToken) => {
+  try {
+    const conn = await pool.getConnection()
+    const query = 'SELECT * FROM users WHERE verification_token = ?'
+    const [rows] = await conn.query(query, [verificationToken])
+    conn.release()
+    return rows.length ? rows[0] : null
+  } catch (error) {
+    console.error(`Error retrieving user by verification token: ${error}`)
+    throw error
+  }
+}
+
+const updateUserVerificationStatus = async (userId, status) => {
+  try {
+    const conn = await pool.getConnection()
+    const query = 'UPDATE users SET verified = ? WHERE id = ?'
+    const [result] = await conn.query(query, [status, userId])
+    conn.release()
+    return result.affectedRows > 0
+  } catch (error) {
+    console.error(`Error updating user verification status: ${error}`)
+    throw error
+  }
+}
+
+const updateUserResetToken = async (userId, resetToken) => {
+  try {
+    const conn = await pool.getConnection()
+    const query = 'UPDATE users SET reset_token = ? WHERE id = ?'
+    const [result] = await conn.query(query, [resetToken, userId])
+    conn.release()
+    return result.affectedRows > 0
+  } catch (error) {
+    console.error(`Error updating user reset token: ${error}`)
+    throw error
+  }
+}
+
+const getUserByResetToken = async (resetToken) => {
+  try {
+    const conn = await pool.getConnection()
+    const query = 'SELECT * FROM users WHERE reset_token = ?'
+    const [rows] = await conn.query(query, [resetToken])
+    conn.release()
+    return rows.length ? rows[0] : null
+  } catch (error) {
+    console.error(`Error retrieving user by reset token: ${error}`)
+    throw error
+  }
+}
+
+const clearUserResetToken = async (userId) => {
+  try {
+    const conn = await pool.getConnection()
+    const query = 'UPDATE users SET reset_token = NULL WHERE id = ?'
+    const [result] = await conn.query(query, [userId])
+    conn.release()
+    return result.affectedRows > 0
+  } catch (error) {
+    console.error(`Error clearing user reset token: ${error}`)
+    throw error
+  }
+}
+
+
+
 export {
   pool,
   incrementRequestCount,
@@ -134,4 +256,12 @@ export {
   insertRequestLog,
   getTotalRequests,
   getLogs,
+  createUser,
+  getUserByEmail,
+  updateUserPassword,
+  getUserByVerificationToken,
+  updateUserVerificationStatus,
+  updateUserResetToken,
+  getUserByResetToken,
+  clearUserResetToken,
 }

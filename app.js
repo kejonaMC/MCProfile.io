@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 dotenv.config()
 import express from 'express'
+import session from 'express-session'
 import bodyParser from 'body-parser'
 import ejs from 'ejs'
 import rateLimit from 'express-rate-limit'
@@ -10,6 +11,7 @@ import requestLogger from './js/requestLogger.js'
 import lookupRouter from './routes/lookup.js'
 import apiRouter from './routes/api.js'
 import endpointsRouter from './routes/endpoints.js'
+import authRouter from './routes/auth.js'
 
 // Rate limiter for API and cache
 const limiter = rateLimit({
@@ -28,7 +30,14 @@ app.use(express.static('attributes'))
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(limiter)
-app.use(requestLogger);
+app.use(requestLogger)
+app.use(
+  session({
+    secret: process.env.SECRETKEY,
+    resave: false,
+    saveUninitialized: true
+  })
+)
 
 // Router Files
 // Set up a custom middleware to intercept requests to the root URL
@@ -49,6 +58,8 @@ app.use((req, res, next) => {
 
 app.use('/api', apiRouter)
 app.use('/endpoints', endpointsRouter)
+app.use('/auth', authRouter)
+
 
 // Error handling middleware
 // Specific error handling middleware for different types of errors.

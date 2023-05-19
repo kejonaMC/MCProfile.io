@@ -4,50 +4,52 @@
 
 <body>
   <div class="counter" style="text-align: center">
-    <% if (totalRequests !== null) { %>
+    <% if (totalRequests !==null) { %>
       <code>Total of <%= totalRequests %> requests have been handled.</code>
-    <% } else { %>
-      <code>Our service has encountered problems and will temporarily operate at a reduced speed.</code>
-    <% } %>
+      <% } else { %>
+        <code>Our service has encountered problems and will temporarily operate at a reduced speed.</code>
+        <% } %>
   </div>
-    <div class="container search">
-        <div class="card">
-            <div class="card-header">
-                Minecraft Profile Lookup
+  <div class="container search">
+    <div class="card">
+      <div class="card-header">
+        Minecraft Profile Lookup
+      </div>
+      <div class="card-body">
+        <form action="/" method="POST">
+          <div class="container">
+            <div class="row g-3 mb-3">
+              <div class="col-12 col-md-6">
+                <label for="accountType" class="form-label">Edition</label>
+                <select name="accountType" id="accountType" class="form-select form-select-lg" required
+                  onchange="changeOptionValue(this.value)">
+                  <option value="Bedrock">Bedrock</option>
+                  <option value="Java">Java</option>
+                </select>
+              </div>
+              <div class="col-12 col-md-6">
+                <label for="searchType" class="form-label">Search With</label>
+                <select name="searchType" id="searchType" class="form-select form-select-lg" required>
+                  <option value="Username">Username</option>
+                  <option value="#" id="uuidOptionValue">#</option>
+                </select>
+              </div>
             </div>
-            <div class="card-body">
-              <form action="/" method="POST">
-                <div class="container">
-                  <div class="row g-3 mb-3">
-                    <div class="col-12 col-md-6">
-                      <label for="accountType" class="form-label">Edition</label>
-                      <select name="accountType" id="accountType" class="form-select form-select-lg" required onchange="changeOptionValue(this.value)">
-                        <option value="Bedrock">Bedrock</option>
-                        <option value="Java">Java</option>
-                      </select>
-                    </div>
-                    <div class="col-12 col-md-6">
-                      <label for="searchType" class="form-label">Search With</label>
-                      <select name="searchType" id="searchType" class="form-select form-select-lg" required>
-                        <option value="Username">Username</option>
-                        <option value="#" id="uuidOptionValue">#</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="row mb-3">
-                    <div class="col">
-                      <label for="Input" id="InputLabel" class="form-label">Enter Username</label>
-                      <div class="input-group">
-                        <input class="form-control form-control-lg" type="text" name="Input" placeholder="KejonaMC1234" aria-describedby="search-submit">
-                        <button class="btn btn-mc-gray btn-large" type="submit" id="search-submit">Search</button>
-                      </div>
-                    </div>
-                  </div>
+            <div class="row mb-3">
+              <div class="col">
+                <label for="Input" id="InputLabel" class="form-label">Enter Username</label>
+                <div class="input-group">
+                  <input class="form-control form-control-lg" type="text" name="Input" placeholder="KejonaMC1234"
+                    aria-describedby="search-submit">
+                  <button class="btn btn-mc-gray btn-large" type="submit" id="search-submit">Search</button>
                 </div>
-              </form>
+              </div>
             </div>
-        </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </body>
 
 <%- include('../partials/footer.ejs') %>
