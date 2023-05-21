@@ -122,6 +122,13 @@ th.theader {
   flex-direction: column;
   margin-bottom: 10px;
 }
+.container.center {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 @media (min-width: 576px) {
     /*sm equivalent*/
     .avatar {

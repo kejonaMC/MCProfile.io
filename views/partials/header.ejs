@@ -22,6 +22,18 @@
           <li class="nav-item">
             <a class="nav-link" href="https://status.mcprofile.io" target="_blank" id="nav-status">Services Status</a>
           </li>
+          <% if (isAuthenticated) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard" id="nav-status">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/auth/signout" id="nav-status">Logout</a>
+          </li>
+          <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/auth/signin" id="nav-status">Login/Signin</a>
+          </li>
+          <% } %>
         </ul>
       </div>
     </div>

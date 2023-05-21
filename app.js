@@ -5,18 +5,18 @@ import session from 'express-session'
 import bodyParser from 'body-parser'
 import ejs from 'ejs'
 import rateLimit from 'express-rate-limit'
-import requestLogger from './js/requestLogger.js'
 
 // Routes
 import lookupRouter from './routes/lookup.js'
 import apiRouter from './routes/api.js'
 import endpointsRouter from './routes/endpoints.js'
 import authRouter from './routes/auth.js'
+import dashboardRouter from './routes/dashboard.js'
 
 // Rate limiter for API and cache
-const limiter = rateLimit({
-  windowMs: 30 * 60 * 1000, // 30 min
-  max: 100,
+const globalLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1H
+  max: 20,
 })
 
 const port = process.env.PORT || 8888
@@ -29,37 +29,43 @@ app.use(express.static('attributes', { extensions: ['ico'] }))
 app.use(express.static('attributes'))
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(limiter)
-app.use(requestLogger)
-app.use(
-  session({
-    secret: process.env.SECRETKEY,
-    resave: false,
-    saveUninitialized: true
-  })
-)
-
-// Router Files
-// Set up a custom middleware to intercept requests to the root URL
+// Apply the global rate limiter to all routes except the API routes
 app.use((req, res, next) => {
-  // Check if the requested URL is the root URL
+  if (req.originalUrl.startsWith('/api')) {
+    next()
+  } else {
+    globalLimiter(req, res, next)
+  }
+})
+app.use(session({
+  secret: process.env.EXPRESS_SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: false, // set this to true on production
+  },
+}))
+
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isAuthenticated || false
+  next()
+})
+
+app.use((req, res, next) => {
   if (req.originalUrl === '/') {
     if (req.method === 'GET') {
-      // If it's a GET request to the root URL, render the response directly from the lookup router
       return lookupRouter(req, res, next)
     } else if (req.method === 'POST') {
-      // If it's a POST request to the root URL, pass it on to the lookup router
       return lookupRouter.handle(req, res, next)
     }
   }
-  // If not, continue processing the request
   next()
 })
 
 app.use('/api', apiRouter)
 app.use('/endpoints', endpointsRouter)
 app.use('/auth', authRouter)
-
+app.use('/dashboard', dashboardRouter)
 
 // Error handling middleware
 // Specific error handling middleware for different types of errors.
@@ -83,7 +89,7 @@ app.get('/', (req, res) => {
 
 // 404 handler
 app.use((req, res, next) => {
-  res.status(404).render('errors/404', { title: 'Error 404' })
+  res.status(404).render('errors/404', { title: 'Error 404', isAuthenticated: res.locals.isAuthenticated })
 })
 
 // Handle unhandled Promise rejections

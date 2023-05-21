@@ -1,12 +1,29 @@
+<!-- dashboard.ejs -->
+
 <%- include('../partials/head.ejs') %>
 <%- include('../partials/header.ejs') %>
 
 <body>
-  <div class="container">
-    h1>Welcome <%= user %>
-      </h1>
-      <p>This is your dashboard. You are logged in as <%= user %>.</p>
+  <div class="container center">
+    <div class="card">
+      <div class="card-header">
+        Welcome <%= username %>, to your dashboard.
+      </div>
+      <div class="card-body">
+        <div class="container">
+          <br>
+            <%= apiKeyMessage %>
+          </p>
+          <p>API Key Usage: <%= requestsPerHour %> / 200 Requests per Hour</p>
+              <br>
+              <form action="/dashboard/generate-api-key" method="POST">
+                <button class="btn btn-mc-gray btn-large" type="submit">Generate or Regenerate API Key</button>
+              </form>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 
 <%- include('../partials/footer.ejs') %>
+

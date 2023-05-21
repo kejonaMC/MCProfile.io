@@ -23,7 +23,7 @@ const TITLES = {
 router.get('/', async (req, res) => {
   try {
     const totalRequests = await getTotalRequests();
-    res.render('pages/lookup', { totalRequests: totalRequests || null, title: TITLES.LOOKUP });
+    res.render('pages/lookup', { totalRequests: totalRequests || null, title: TITLES.LOOKUP })
   } catch (error) {
     res.status(500).render('errors/500', { title: TITLES.ERROR_500 })
   }
