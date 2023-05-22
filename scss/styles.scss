@@ -12,21 +12,23 @@
   font-weight: normal;
   text-rendering: optimizeLegibility;
 }
+
 body {
-  background-color: #140c19;
-  background-image: url("../images/bg.png");
-  // https://wallpaperaccess.com/minecraft-dark
-  height: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #140c19;
+  background-image: url("../images/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 footer {
   margin-top: auto;
   padding: 20px;
   font-family: 'MinecraftSeven', sans-serif;
+  background-color: #140c19a6;
+  text-align: center;
 }
 h1, h2, h3, h4, h5, h6 {
     @extend .text-white;
@@ -70,27 +72,39 @@ th.theader {
     text-align: center;
 }
 .search {
-  font-family: MinecraftSeven, ;
-  .card {
-    color: rgb(255, 255, 255);
-    background-color: #140c19a6 !important;
-  }
-  .card-header {
-    text-align: center;
-    color: rgb(253, 253, 253);
-  }
-  .card-body {
-    padding: 3em var(--bs-card-spacer-x);
-    background-color: #140c19a6 !important;
-  }
-  .form-select, .form-control, .btn {
-    border-radius: 0;
-  }
+  font-family: MinecraftSeven;
 }
+
 .card {
+  color: rgb(255, 255, 255);
   background-color: #140c19a6 !important;
-  font-family: 'MinecraftSeven', sans-serif;
-  margin-bottom: 10%;
+
+}
+
+.card.dashboard {
+  min-width: 60%;
+}
+
+.card-header {
+  text-align: center;
+  color: rgb(253, 253, 253);
+  padding: 1em 0;
+  margin-bottom: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.card-body {
+  padding: 3em var(--bs-card-spacer-x);
+  background-color: #140c19a6 !important;
+  height: 100%;
+}
+
+.form-select,
+.form-control,
+.btn {
+  border-radius: 0;
 }
 .form-control, .form-select {
   background-color: #140c19a6 !important;
@@ -121,6 +135,16 @@ th.theader {
   align-items: center;
   flex-direction: column;
   margin-bottom: 10px;
+}
+.container.center {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 80px);
+}
+.container.center.dashboard {
+  min-height: calc(100vh - 200px); /* Adjust the value as needed */
 }
 @media (min-width: 576px) {
     /*sm equivalent*/

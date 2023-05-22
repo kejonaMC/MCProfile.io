@@ -28,4 +28,46 @@ async function requestXBLData(extension) {
   }
 }
 
-export default { requestXBLData }
+async function getXboxAccount(accessToken) {
+  try {
+    const xboxAuth = await request
+      .post('https://user.auth.xboxlive.com/user/authenticate')
+      .send({
+        Properties: {
+          AuthMethod: 'RPS',
+          SiteName: 'user.auth.xboxlive.com',
+          RpsTicket: 'd=' + accessToken,
+        },
+        RelyingParty: 'http://auth.xboxlive.com',
+        TokenType: 'JWT',
+      })
+      .set({
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      })
+
+    const xstsAuth = await request
+      .post('https://xsts.auth.xboxlive.com/xsts/authorize')
+      .send({
+        Properties: {
+          SandboxId: 'RETAIL',
+          UserTokens: [xboxAuth.body.Token],
+        },
+        RelyingParty: 'http://xboxlive.com',
+        TokenType: 'JWT',
+      })
+      .set({
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      })
+
+    return {
+      gamertag: xstsAuth.body.DisplayClaims.xui[0].gtg,
+      xuid: xstsAuth.body.DisplayClaims.xui[0].xid,
+    }
+  } catch (error) {
+    throw error
+  }
+}
+
+export default { requestXBLData, getXboxAccount }
