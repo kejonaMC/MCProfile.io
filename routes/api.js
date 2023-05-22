@@ -86,6 +86,20 @@ router.get('/v1/java/uuid/:uuid', cacheMiddleware, authenticateApiKey, async (re
   }
 })
 
+router.get('/v1/status/health', async (req, res) => {
+  try {
+    const xboxResponse = await xboxRequest.requestXBLData(`${gamertagApiPath}kobenetwork)/profile/settings`)
+    const profileData = await profile.bedrockSetup(xboxResponse.body)
+    if (profileData.gamertag === 'KobeNetwork') {
+      res.status(200).json({ health: 'ok' })
+    } else {
+      res.status(402).json({ health: 'nok' })
+    }
+  } catch (error) {
+    res.status(404).json({ health: 'nok' })
+  }
+})
+
 const bedrockRespond = async (xboxResponse, res) => {
   try {
     const profileData = await profile.bedrockSetup(xboxResponse.body)

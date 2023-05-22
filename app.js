@@ -15,8 +15,8 @@ import dashboardRouter from './routes/dashboard.js'
 
 // Rate limiter for API and cache
 const globalLimiter = rateLimit({
-  windowMs: 60 * 60 * 1000, // 1H
-  max: 20,
+  windowMs: 30 * 60 * 1000, // 50 web requests we allow ( non api ) per 30min
+  max: 50,
 })
 
 const port = process.env.PORT || 8888
@@ -89,7 +89,7 @@ app.get('/', (req, res) => {
 
 // 404 handler
 app.use((req, res, next) => {
-  res.status(404).render('errors/404', { title: 'Error 404', isAuthenticated: res.locals.isAuthenticated })
+  res.status(404).render('errors/404', { title: 'Error 404' })
 })
 
 // Handle unhandled Promise rejections
