@@ -16,7 +16,7 @@ import dashboardRouter from './routes/dashboard.js'
 // Rate limiter for API and cache
 const globalLimiter = rateLimit({
   windowMs: 30 * 60 * 1000, // 50 web requests we allow ( non api ) per 30min
-  max: 50,
+  max: 100,
 })
 
 const port = process.env.PORT || 8888
