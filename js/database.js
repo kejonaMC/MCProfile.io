@@ -29,6 +29,7 @@ const createTables = async () => {
         api_key VARCHAR(255),
         generated_at DATETIME,
         requests_per_hour INT DEFAULT 0,
+        total_requests INT DEFAULT 0,
         INDEX api_key_unique_idx (api_key)
       )
     `
@@ -140,16 +141,17 @@ const updateApiKey = async (xuid, apiKey) => {
 const getApiKey = async (xuid) => {
   try {
     const result = await executeQuery(
-      'SELECT api_key, generated_at, requests_per_hour FROM api_keys WHERE xuid = ?',
+      'SELECT api_key, generated_at, requests_per_hour, total_requests FROM api_keys WHERE xuid = ?',
       [xuid]
     )
 
     if (result.length > 0) {
-      const { api_key, generated_at, requests_per_hour } = result[0]
+      const { api_key, generated_at, requests_per_hour, total_requests } = result[0]
       return {
         apiKey: api_key,
         generatedAt: generated_at,
         requestsPerHour: requests_per_hour,
+        totalRequests: total_requests,
       }
     }
 
@@ -160,16 +162,16 @@ const getApiKey = async (xuid) => {
   }
 }
 
-const incrementRequestsPerHour = async (apiKey) => {
+const incrementApiRequests = async (apiKey) => {
   try {
     const currentHour = moment().format('YYYY-MM-DD HH:00:00')
     await executeQuery(
-      'UPDATE api_keys SET requests_per_hour = requests_per_hour + 1 WHERE api_key = ? AND HOUR(generated_at) = HOUR(?)',
+      'UPDATE api_keys SET requests_per_hour = requests_per_hour + 1, total_requests = total_requests + 1 WHERE api_key = ? AND HOUR(generated_at) = HOUR(?)',
       [apiKey, currentHour]
     )
-    console.log('Requests per hour incremented successfully')
+    console.log('Requests incremented successfully')
   } catch (error) {
-    console.error(`Error incrementing requests per hour: ${error}`)
+    console.error(`Error incrementing requests: ${error}`)
     throw error
   }
 }
@@ -218,9 +220,9 @@ const checkRequestLimit = async (apiKey) => {
 
 export {
   pool,
-  incrementTotalRequests,
-  incrementRequestsPerHour,
   getTotalRequests,
+  incrementTotalRequests,
+  incrementApiRequests,
   updateApiKey,
   insertApiKey,
   getApiKey,

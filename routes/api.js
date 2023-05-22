@@ -3,7 +3,7 @@ import apicache from 'apicache'
 import profile from '../js/profileSetup.js'
 import xboxRequest from '../js/xboxRequest.js'
 import minecraftRequest from '../js/minecraftRequest.js'
-import { checkRequestLimit, incrementTotalRequests, incrementRequestsPerHour, isApiKeyPresent } from '../js/database.js'
+import { checkRequestLimit, incrementTotalRequests, incrementApiRequests, isApiKeyPresent } from '../js/database.js'
 
 const router = express.Router()
 const gamertagApiPath = '/users/gt('
@@ -29,7 +29,7 @@ const authenticateApiKey = async (req, res, next) => {
       return res.status(429).json({ message: 'Too many requests. Please try again later.' })
     }
 
-    await Promise.all([incrementRequestsPerHour(apiKey), incrementTotalRequests()])
+    await Promise.all([incrementApiRequests(apiKey), incrementTotalRequests()])
 
     req.user = { apiKey }
 

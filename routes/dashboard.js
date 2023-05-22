@@ -11,34 +11,19 @@ router.get('/', async (req, res) => {
   try {
     const apiKeyData = await getApiKey(xboxAccount.xuid)
 
-    let apiKeyMessage = "No API key generated yet"
-    let requestsPerHour = 0 
-
-    if (apiKeyData) {
-      const { apiKey, generatedAt, requestsPerHour: perHour } = apiKeyData
-
-      const currentTime = moment()
-      const keyGeneratedTime = moment(generatedAt)
-      const minutesSinceGenerated = currentTime.diff(keyGeneratedTime, 'minutes')
-
-      if (minutesSinceGenerated > 10) {
-        apiKeyMessage = `Your API key: ${"*".repeat(apiKey.length - 5)}${apiKey.slice(-5)}`
-      } else {
-        apiKeyMessage = `Your API key: ${apiKey}`
-      }
-
-      requestsPerHour = perHour 
-    }
+    const apiKeyMessage = apiKeyData ? generateApiKeyMessage(apiKeyData) : "No API key generated yet"
+    const { requestsPerHour = 0, totalRequests = 0 } = apiKeyData || {}
 
     res.render('pages/dashboard', {
       title: 'Dashboard',
       username: xboxAccount.gamertag,
       apiKeyMessage,
-      requestsPerHour
+      requestsPerHour,
+      totalRequests,
     })
   } catch (error) {
-    console.error('Error retrieving dashboard data:', error)
-    res.status(500).send('An error occurred while retrieving dashboard data.')
+    console.error('Error retrieving dashboard data:', error);
+    res.status(500).send('An error occurred while retrieving dashboard data.');
   }
 })
 
@@ -65,5 +50,18 @@ router.post('/generate-api-key', async (req, res) => {
     res.status(500).send('An error occurred while generating/regenerating the API key.')
   }
 })
+
+const generateApiKeyMessage = (apiKeyData) => {
+  const { apiKey, generatedAt } = apiKeyData
+  const currentTime = moment()
+  const keyGeneratedTime = moment(generatedAt)
+  const minutesSinceGenerated = currentTime.diff(keyGeneratedTime, 'minutes')
+
+  if (minutesSinceGenerated > 10) {
+    return `Your API key: ${"*".repeat(apiKey.length - 5)}${apiKey.slice(-5)}`
+  } else {
+    return `Your API key: ${apiKey}`
+  }
+}
 
 export default router

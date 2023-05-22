@@ -2,7 +2,6 @@
 
 <%- include('../partials/head.ejs') %>
 <%- include('../partials/header.ejs') %>
-
 <body>
   <div class="container center">
     <div class="card">
@@ -12,13 +11,15 @@
       <div class="card-body">
         <div class="container">
           <br>
-            <%= apiKeyMessage %>
-          </p>
-          <p>API Key Usage: <%= requestsPerHour %> / 200 Requests per Hour</p>
-              <br>
-              <form action="/dashboard/generate-api-key" method="POST">
-                <button class="btn btn-mc-gray btn-large" type="submit">Generate or Regenerate API Key</button>
-              </form>
+          <%= apiKeyMessage %>
+            </p>
+            <p>API Key Usage: <%= requestsPerHour %> / 200 Requests per Hour</p>
+            <p>Total Requests: <%= totalRequests %>
+            </p>
+            <br>
+            <form action="/dashboard/generate-api-key" method="POST">
+              <button class="btn btn-mc-gray btn-large" type="submit">Generate or Regenerate API Key</button>
+            </form>
         </div>
       </div>
     </div>
