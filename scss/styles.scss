@@ -78,7 +78,7 @@ th.theader {
 .card {
   color: rgb(255, 255, 255);
   background-color: #140c19a6 !important;
-
+  margin-bottom: 20px;
 }
 
 .card.dashboard {
@@ -92,6 +92,7 @@ th.theader {
   margin-bottom: 0;
   height: 100%;
   display: flex;
+  justify-content: center; /* Add this line */
   align-items: center;
 }
 
