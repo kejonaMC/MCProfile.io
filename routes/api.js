@@ -1,3 +1,4 @@
+import cors from 'cors'
 import express from 'express'
 import apicache from 'apicache'
 import profile from '../js/profileSetup.js'
@@ -40,7 +41,15 @@ const authenticateApiKey = async (req, res, next) => {
   }
 }
 
-router.get('/v1/bedrock/gamertag/:gamertag', cacheMiddleware, authenticateApiKey, async (req, res) => {
+const corsMiddleware = cors({
+  origin: true, // Allow all origins
+  methods: ['GET'],
+  allowedHeaders: ['Content-Type', 'x-api-key'],
+})
+
+const middlewares = [cacheMiddleware, authenticateApiKey, corsMiddleware]
+
+router.get('/v1/bedrock/gamertag/:gamertag', middlewares, async (req, res) => {
   try {
     const xboxResponse = await xboxRequest.requestXBLData(`${gamertagApiPath}${req.params.gamertag})/profile/settings`)
     bedrockRespond(xboxResponse, res)
@@ -49,7 +58,7 @@ router.get('/v1/bedrock/gamertag/:gamertag', cacheMiddleware, authenticateApiKey
   }
 })
 
-router.get('/v1/bedrock/xuid/:xuid', cacheMiddleware, authenticateApiKey, async (req, res) => {
+router.get('/v1/bedrock/xuid/:xuid', middlewares, async (req, res) => {
   try {
     const xboxResponse = await xboxRequest.requestXBLData(`${xuidApiPath}${req.params.xuid})/profile/settings`)
     bedrockRespond(xboxResponse, res)
@@ -58,7 +67,7 @@ router.get('/v1/bedrock/xuid/:xuid', cacheMiddleware, authenticateApiKey, async 
   }
 })
 
-router.get('/v1/bedrock/fuid/:fuuid', cacheMiddleware, authenticateApiKey, async (req, res) => {
+router.get('/v1/bedrock/fuid/:fuuid', middlewares, async (req, res) => {
   try {
     const xuid = profile.createXuid(req.params.fuuid)
     const xboxResponse = await xboxRequest.requestXBLData(`${xuidApiPath}${xuid})/profile/settings`)
@@ -68,7 +77,7 @@ router.get('/v1/bedrock/fuid/:fuuid', cacheMiddleware, authenticateApiKey, async
   }
 })
 
-router.get('/v1/java/username/:username', cacheMiddleware, authenticateApiKey, async (req, res) => {
+router.get('/v1/java/username/:username', middlewares, async (req, res) => {
   try {
     const minecraftResponse = await minecraftRequest.requestMCData(req.params.username, true)
     javaRespond(minecraftResponse, res)
@@ -77,7 +86,7 @@ router.get('/v1/java/username/:username', cacheMiddleware, authenticateApiKey, a
   }
 })
 
-router.get('/v1/java/uuid/:uuid', cacheMiddleware, authenticateApiKey, async (req, res) => {
+router.get('/v1/java/uuid/:uuid', middlewares, async (req, res) => {
   try {
     const minecraftResponse = await minecraftRequest.requestMCData(req.params.uuid, false)
     javaRespond(minecraftResponse, res)
@@ -86,7 +95,7 @@ router.get('/v1/java/uuid/:uuid', cacheMiddleware, authenticateApiKey, async (re
   }
 })
 
-router.get('/v1/status/health', async (req, res) => {
+router.get('/v1/status/health', corsMiddleware, async (req, res) => {
   try {
     const xboxResponse = await xboxRequest.requestXBLData(`${gamertagApiPath}kobenetwork)/profile/settings`)
     const profileData = await profile.bedrockSetup(xboxResponse.body)
