@@ -11,12 +11,11 @@ import lookupRouter from './routes/lookup.js'
 import apiRouter from './routes/api.js'
 import endpointsRouter from './routes/endpoints.js'
 import authRouter from './routes/auth.js'
-import dashboardRouter from './routes/dashboard.js'
 
 // Rate limiter for API and cache
 const globalLimiter = rateLimit({
   windowMs: 30 * 60 * 1000, // 50 web requests we allow ( non api ) per 30min
-  max: 50,
+  max: 100,
 })
 
 const port = process.env.PORT || 8888
@@ -65,7 +64,6 @@ app.use((req, res, next) => {
 app.use('/api', apiRouter)
 app.use('/endpoints', endpointsRouter)
 app.use('/auth', authRouter)
-app.use('/dashboard', dashboardRouter)
 
 // Error handling middleware
 // Specific error handling middleware for different types of errors.

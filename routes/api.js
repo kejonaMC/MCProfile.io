@@ -1,45 +1,13 @@
 import cors from 'cors'
 import express from 'express'
-import apicache from 'apicache'
 import profile from '../js/profileSetup.js'
 import xboxRequest from '../js/xboxRequest.js'
 import minecraftRequest from '../js/minecraftRequest.js'
-import { checkRequestLimit, incrementTotalRequests, incrementApiRequests, isApiKeyPresent } from '../js/database.js'
 
 const router = express.Router()
 const gamertagApiPath = '/users/gt('
 const xuidApiPath = '/users/xuid('
-const cacheTime = '10 minutes'
 const errorMessage = 'Could not get account details from xbox api.'
-
-const cacheMiddleware = apicache.middleware(cacheTime)
-
-const authenticateApiKey = async (req, res, next) => {
-  const apiKey = req.headers['x-api-key']
-
-  try {
-    // Check if the API key is present in the database
-    const apiKeyPresent = await isApiKeyPresent(apiKey)
-    if (!apiKeyPresent) {
-      return res.status(401).json({ message: 'Invalid API key.' })
-    }
-
-    // Check the request limit for the API key
-    const withinLimit = await checkRequestLimit(apiKey)
-    if (!withinLimit) {
-      return res.status(429).json({ message: 'Too many requests. Please try again later.' })
-    }
-
-    await Promise.all([incrementApiRequests(apiKey), incrementTotalRequests()])
-
-    req.user = { apiKey }
-
-    next()
-  } catch (error) {
-    console.error('Error authenticating API key:', error)
-    res.status(500).json({ message: 'An error occurred while authenticating the API key.' })
-  }
-}
 
 const corsMiddleware = cors({
   origin: true, // Allow all origins
@@ -47,7 +15,7 @@ const corsMiddleware = cors({
   allowedHeaders: ['Content-Type', 'x-api-key'],
 })
 
-const middlewares = [cacheMiddleware, authenticateApiKey, corsMiddleware]
+const middlewares = [corsMiddleware]
 
 router.get('/v1/bedrock/gamertag/:gamertag', middlewares, async (req, res) => {
   try {
@@ -95,7 +63,7 @@ router.get('/v1/java/uuid/:uuid', middlewares, async (req, res) => {
   }
 })
 
-router.get('/v1/status/health', corsMiddleware, async (req, res) => {
+router.get('/v1/status/health', middlewares, async (req, res) => {
   try {
     const xboxResponse = await xboxRequest.requestXBLData(`${gamertagApiPath}kobenetwork)/profile/settings`)
     const profileData = await profile.bedrockSetup(xboxResponse.body)
