@@ -10,7 +10,6 @@ import rateLimit from 'express-rate-limit'
 import lookupRouter from './routes/lookup.js'
 import apiRouter from './routes/api.js'
 import endpointsRouter from './routes/endpoints.js'
-import authRouter from './routes/auth.js'
 
 // Rate limiter for API and cache
 const globalLimiter = rateLimit({
@@ -30,11 +29,7 @@ app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }))
 // Apply the global rate limiter to all routes except the API routes
 app.use((req, res, next) => {
-  if (req.originalUrl.startsWith('/api')) {
-    next()
-  } else {
     globalLimiter(req, res, next)
-  }
 })
 app.use(session({
   secret: process.env.EXPRESS_SESSION_SECRET,
